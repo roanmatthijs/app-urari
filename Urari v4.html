@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator de Urări Premium - Ediție Festivă Completă</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-primary: 'Inter', sans-serif;
+            --font-display: 'Playfair Display', serif;
+            --color-background-deep-space: #0d1117; 
+            --color-background-nebula-start: #161b22;
+            --color-background-nebula-end: #010409;
+            --color-surface-glass: rgba(22, 27, 34, 0.8); 
+            --color-surface-border: rgba(139, 148, 158, 0.25); 
+            --color-surface-glow: rgba(88, 166, 255, 0.3); 
+            --color-text-primary: #c9d1d9; 
+            --color-text-secondary: #8b949e; 
+            --color-text-placeholder: #6e7681;
+            --color-accent-celestial-blue: #58a6ff; 
+            --color-accent-celestial-blue-hover: #79c0ff;
+            --color-accent-magenta-flare: #ff79c6;
+            --color-accent-golden-spark: #f1e05a;
+            --color-favorite-active: #f7786b; 
+            --color-favorite-inactive: #6e7681; 
+            --color-success: #56d364; 
+            --color-error-bg: rgba(248, 81, 73, 0.1); 
+            --color-error-text: #f85149; 
+            --color-error-border: rgba(248, 81, 73, 0.5);
+            --border-radius-main: 1rem; 
+            --border-radius-input: 0.625rem; 
+            --shadow-glow-soft: 0 0 15px rgba(88, 166, 255, 0.2), 0 0 30px rgba(88, 166, 255, 0.1);
+            --shadow-card-depth: 0 10px 30px rgba(0,0,0, 0.3);
+             --color-gift-button: #2dd4bf; /* Tailwind teal-400 */
+            --color-gift-button-hover: #14b8a6; /* Tailwind teal-500 */
+            --color-reply-button: #818cf8; /* Tailwind indigo-400 */
+            --color-reply-button-hover: #6366f1; /* Tailwind indigo-500 */
+        }
+
+        @keyframes backgroundStars { 0% { background-position: 0 0; } 100% { background-position: -10000px 5000px; } }
+        
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--color-background-deep-space);
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cfilter id='stars'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 -0.3 1'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='100%25' height='100%25' filter='url(%23stars)' opacity='0.3'/%3E%3C/svg%3E"),
+                linear-gradient(170deg, var(--color-background-nebula-start) 0%, var(--color-background-nebula-end) 100%);
+            background-size: auto, 200% 200%;
+            animation: gradientFlow 45s ease infinite, backgroundStars 300s linear infinite;
+            color: var(--color-text-primary);
+            line-height: 1.7; 
+            padding-top: 2rem; 
+            padding-bottom: 3rem; 
+            min-height: 100vh;
+            position: relative; 
+            overflow-x: hidden; 
+        }
+        @keyframes gradientFlow { 0% { background-position: 0% 50%, 0% 50%; } 50% { background-position: 0% 50%, 100% 50%; } 100% { background-position: 0% 50%, 0% 50%; } }
+
+        .dust-motes-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 0; }
+        .dust-mote { position: absolute; background-color: rgba(139, 148, 158, 0.15); border-radius: 50%; opacity: 0; animation: driftAndFade 60s infinite linear; will-change: transform, opacity; }
+        .mote1 { width: 1px; height: 1px; top: 20%; left: 10%; animation-duration: 80s; animation-delay: -2s; --mote-dx: 12; --mote-dy: -22; }
+        .mote2 { width: 2px; height: 2px; top: 40%; left: 90%; animation-duration: 70s; animation-delay: -10s; --mote-dx: -18; --mote-dy: 12; }
+        .mote3 { width: 1px; height: 1px; top: 70%; left: 15%;  animation-duration: 90s; animation-delay: -20s; --mote-dx: 22; --mote-dy: 18; }
+        .mote4 { width: 2px; height: 2px; top: 85%; left: 80%; animation-duration: 60s; animation-delay: -30s; --mote-dx: -8; --mote-dy: -28; }
+        .mote5 { width: 1px; height: 1px; top: 10%; left: 50%; animation-duration: 100s; animation-delay: -40s; --mote-dx: 2; --mote-dy: 32; }
+        .mote6 { width: 2px; height: 2px; top: 55%; left: 30%; animation-duration: 75s; animation-delay: -50s; --mote-dx: -12; --mote-dy: 8; }
+        @keyframes driftAndFade { 0% { transform: translate(0px, 0px) scale(0.4); opacity: 0; } 15% { opacity: 0.5; transform: scale(0.7); } 75% { opacity: 0.5; transform: scale(1.1); } 100% { transform: translate(calc(var(--mote-dx, 15) * 1vw), calc(var(--mote-dy, -20) * 1vh)) scale(0.4); opacity: 0; } }
+
+        .generator-container {
+            background-color: var(--color-surface-glass);
+            backdrop-filter: blur(20px) saturate(150%); 
+            -webkit-backdrop-filter: blur(20px) saturate(150%);
+            border-radius: var(--border-radius-main); 
+            box-shadow: var(--shadow-card-depth), 0 0 0 1px var(--color-surface-border); 
+            padding: 1.5rem; 
+            position: relative;
+            z-index: 1; 
+            overflow: hidden; 
+        }
+        @media (min-width: 768px) { .generator-container { padding: 2rem; } }
+        .generator-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: inherit; padding: 1px; background: linear-gradient(120deg, transparent, var(--color-accent-celestial-blue), transparent, var(--color-accent-magenta-flare), transparent); background-size: 300% 300%; animation: borderGlow 10s linear infinite; -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: destination-out; mask-composite: exclude; z-index: -1; }
+        @keyframes borderGlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        .title-font { font-family: var(--font-display); font-weight: 900; background: linear-gradient(90deg, var(--color-accent-celestial-blue), var(--color-accent-magenta-flare)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent; letter-spacing: -0.03em; text-shadow: 0 2px 10px rgba(88, 166, 255, 0.2); }
+        .subtitle-font { color: var(--color-text-secondary); font-size: 1.125rem; line-height: 1.75; }
+        .label-style { color: var(--color-text-primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.625rem; }
+        .input-style, .select-style, .textarea-style { border: 1px solid var(--color-surface-border); color: var(--color-text-primary); border-radius: var(--border-radius-input); padding: 0.9rem 1.25rem; transition: border-color 0.3s ease, box-shadow 0.3s ease; width: 100%; background-color: rgba(30, 36, 44, 0.7); }
+        .textarea-style { min-height: 100px; }
+        .input-style::placeholder, .textarea-style::placeholder { color: var(--color-text-placeholder); opacity: 0.8; }
+        .input-style:focus, .select-style:focus, .textarea-style:focus { border-color: var(--color-accent-celestial-blue); box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.25), 0 0 15px rgba(88, 166, 255, 0.15); outline: none; background-color: rgba(30, 36, 44, 0.9); }
+        
+        .btn-primary { background-image: linear-gradient(to right, var(--color-accent-celestial-blue) 0%, var(--color-accent-magenta-flare) 70%, var(--color-accent-golden-spark) 100%); background-size: 200% auto; color: white; transition: background-position 0.5s ease, transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1); border-radius: var(--border-radius-input); padding: 0.9rem 1.75rem; font-weight: 700; font-size: 1rem; box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 0 10px var(--color-accent-celestial-blue-hover); border: none; position: relative; overflow: hidden; }
+        .btn-primary::before { content: ""; position: absolute; top: 50%; left: 50%; width: 300%; height: 300%; background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%); border-radius: 50%; transform: translate(-50%, -50%) scale(0); transition: transform 0.5s ease, opacity 0.5s ease; opacity: 0; pointer-events: none; }
+        .btn-primary:hover::before { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        .btn-primary:hover { background-position: right center; transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3), 0 0 20px var(--color-accent-magenta-flare); }
+        .btn-primary:active { transform: translateY(-1px) scale(0.98); box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25); }
+        .btn-primary:disabled { background-image: none; background-color: #3a414a; color: #6e7681; cursor: not-allowed; transform: translateY(0); box-shadow: none; }
+        
+        .btn-gift { background-image: linear-gradient(to right, var(--color-gift-button) 0%, #67e8f9 100%); box-shadow: 0 8px 15px rgba(32, 201, 190, 0.25); }
+        .btn-gift:hover { background-position: right center; box-shadow: 0 12px 25px rgba(32, 201, 190, 0.3); }
+        .btn-reply { background-image: linear-gradient(to right, var(--color-reply-button) 0%, #a5b4fc 100%); box-shadow: 0 8px 15px rgba(129, 140, 248, 0.25); }
+        .btn-reply:hover { background-position: right center; box-shadow: 0 12px 25px rgba(129, 140, 248, 0.3); }
+
+        .btn-purple { background-image: linear-gradient(to right, var(--brand-purple-button, #7c3aed) 0%, #A78BFA 100%); box-shadow: 0 8px 15px rgba(124, 58, 237, 0.25); }
+        .btn-purple:hover { background-position: right center; box-shadow: 0 12px 25px rgba(124, 58, 237, 0.3); }
+
+        .btn-secondary { background-color: rgba(55, 65, 81, 0.5); color: var(--color-text-secondary); border: 1px solid var(--color-surface-border); transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.2s cubic-bezier(0.23, 1, 0.32, 1); border-radius: var(--border-radius-input); padding: 0.5rem 1rem; font-weight: 500; font-size: 0.875rem; }
+        .btn-secondary:hover { background-color: rgba(75, 85, 99, 0.7); color: var(--color-text-primary); box-shadow: 0 3px 6px rgba(0,0,0,0.1); transform: translateY(-1px); }
+        
+        .btn-icon-wrapper { position: absolute; top: 1.25rem; right: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+        .btn-copy-container { position: relative; }
+        .btn-copy, .btn-favorite { background-color: transparent; color: var(--color-favorite-inactive); padding: 0.375rem; border-radius: 0.375rem; transition: color 0.2s ease, background-color 0.2s ease, transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; justify-content: center; }
+        .btn-copy:hover, .btn-favorite:hover { color: var(--color-accent-celestial-blue); background-color: rgba(88, 166, 255, 0.1); transform: scale(1.2) rotate(3deg); }
+        .btn-favorite.is-favorite svg { fill: var(--color-favorite-active); color: var(--color-favorite-active); }
+        .btn-copy svg, .btn-favorite svg { width: 1.375rem; height: 1.375rem; } 
+        .copied-feedback { position: absolute; bottom: calc(-100% - 0.6rem); left: 50%; transform: translateX(-50%); background-color: var(--color-success); color: var(--color-background-deep-space); padding: 0.3rem 0.7rem; border-radius: var(--border-radius-input); font-size: 0.75rem; font-weight: 600; white-space: nowrap; opacity: 0; transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; pointer-events: none; box-shadow: 0 2px 5px rgba(0,0,0,0.15); }
+        .copied-feedback.show { opacity: 1; transform: translateX(-50%) translateY(0.125rem); }
+
+        .wish-card { background-color: var(--color-surface-glass); backdrop-filter: blur(10px) saturate(120%); -webkit-backdrop-filter: blur(10px) saturate(120%); border: 1px solid var(--color-surface-border); margin-bottom: 2rem; padding: 2rem; padding-right: 7rem; border-radius: var(--border-radius-main); box-shadow: var(--shadow-card-depth); position: relative; opacity: 0; transform: translateY(50px) scale(0.95); transition: opacity 0.7s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease-in-out; }
+        .wish-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 35px rgba(0,0,0, 0.35), 0 0 15px var(--color-accent-celestial-blue); }
+        .wish-card.visible { opacity: 1; transform: translateY(0) scale(1); }
+        .wish-text { color: var(--color-text-primary); font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.25rem; }
+        .continued-wish-text { color: var(--color-text-secondary); font-size: 1rem; line-height: 1.75; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px dashed var(--color-surface-border); }
+        
+        .loading-spinner-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(13, 17, 23, 0.9); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.3s ease-in-out; }
+        .loading-spinner { width: auto; height: 60px; display: flex; justify-content: center; align-items: center; border: none; }
+        .loading-spinner div { width: 18px; height: 18px; background-color: var(--color-accent-celestial-blue); border-radius: 50%; margin: 0 6px; animation: pulseOrb 1.4s infinite ease-in-out both; box-shadow: 0 0 10px var(--color-accent-celestial-blue), 0 0 20px var(--color-accent-celestial-blue); }
+        .loading-spinner div:nth-child(1) { animation-delay: -0.32s; }
+        .loading-spinner div:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes pulseOrb { 0%, 80%, 100% { transform: scale(0.5); opacity: 0.4; } 40% { transform: scale(1.0); opacity: 1; } }
+
+        .small-loading-spinner { border: 3px solid rgba(139, 148, 158, 0.3); border-top: 3px solid var(--color-accent-celestial-blue); width: 20px; height: 20px; display: inline-block; margin-right: 0.5rem; vertical-align: middle; border-radius: 50%; animation: spin 0.8s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .error-message-box { background-color: var(--color-error-bg); color: var(--color-error-text); border: 1px solid var(--color-error-border); border-left-width: 5px; border-left-color: var(--color-error-text); padding: 1.25rem; border-radius: var(--border-radius-input); box-shadow: 0 5px 15px rgba(248, 81, 73, 0.2); }
+        .hidden { display: none !important; }
+        .select-style { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238b949e'%3E%3Cpath d='M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z'%3E%3C/path%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.5em; padding-right: 3.5rem; }
+        .section-title { font-family: var(--font-display); font-weight: 700; color: var(--color-text-primary); font-size: 2.25rem; margin-bottom: 2.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--color-surface-border); }
+        .ai-intro-text { background-color: rgba(88, 166, 255, 0.1); color: var(--color-accent-celestial-blue); padding: 1.25rem 1.75rem; border-radius: var(--border-radius-input); margin-bottom: 2rem; font-style: normal; border-left: 5px solid var(--color-accent-celestial-blue); line-height: 1.7; }
+        .gift-ideas-list { list-style: none; padding-left: 0; }
+        .gift-ideas-list li { background-color: rgba(30, 36, 44, 0.6); padding: 1.25rem 1.5rem; border-radius: var(--border-radius-input); margin-bottom: 1rem; border: 1px solid var(--color-surface-border); color: var(--color-text-primary); font-size: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .gift-ideas-list li::before { content: "✨"; margin-right: 1rem; font-size: 1.25rem; color: var(--color-accent-golden-spark); } 
+        #favorites-modal { background-color: rgba(1, 4, 9, 0.8); } 
+        #favorites-modal-content { max-height: 85vh; border-radius: var(--border-radius-main); background-color: var(--color-surface-glass); backdrop-filter: blur(15px) saturate(180%); -webkit-backdrop-filter: blur(15px) saturate(180%); border: 1px solid var(--color-surface-border); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+        #favorites-modal-content .section-title { font-size: 1.75rem; color: var(--color-text-primary); border-bottom-color: var(--color-surface-border); } 
+        #reply-generator-tab-content { 
+             margin-top: 0; 
+        }
+         #reply-generator-tab-content .section-title {
+            font-size: 1.875rem; 
+            margin-bottom: 1.5rem;
+        }
+
+        /* Tab Styles */
+        .tabs-container {
+            display: flex;
+            flex-wrap: wrap; 
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--color-surface-border);
+        }
+        .tab-button {
+            padding: 0.85rem 1.35rem; 
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--color-text-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease, border-bottom-color 0.3s ease, background-color 0.3s ease;
+            margin-right: 0.25rem; 
+            margin-bottom: -2px; 
+            border-top-left-radius: var(--border-radius-input);
+            border-top-right-radius: var(--border-radius-input);
+        }
+        .tab-button:hover {
+            color: var(--color-accent-celestial-blue);
+            background-color: rgba(88, 166, 255, 0.05); 
+        }
+        .tab-button.active {
+            color: var(--color-accent-celestial-blue);
+            border-bottom-color: var(--color-accent-celestial-blue);
+            background-color: rgba(88, 166, 255, 0.1); 
+        }
+        .tab-content {
+            display: none;
+            padding-top: 2rem; 
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); } 
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            color: var(--color-text-primary);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .checkbox-label input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            height: 1.25em;
+            width: 1.25em;
+            background-color: rgba(55, 65, 81, 0.5); 
+            border: 1px solid var(--color-surface-border);
+            border-radius: 0.25em;
+            margin-right: 0.5em;
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+        .checkbox-label input[type="checkbox"]:checked {
+            background-color: var(--color-accent-celestial-blue);
+            border-color: var(--color-accent-celestial-blue);
+        }
+        .checkbox-label input[type="checkbox"]:checked::after {
+            content: '✔';
+            font-size: 0.9em;
+            color: var(--color-surface);
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .radio-group-label {
+             display: block;
+             color: var(--color-text-primary);
+             font-weight: 600;
+             font-size: 0.9rem;
+             margin-bottom: 0.5rem;
+        }
+        .radio-label {
+            display: flex;
+            align-items: center;
+            color: var(--color-text-primary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-right: 1rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--border-radius-input);
+            transition: background-color 0.2s ease;
+        }
+         .radio-label input[type="radio"] {
+            margin-right: 0.5em;
+            accent-color: var(--color-accent-celestial-blue); 
+         }
+        .radio-label:hover {
+            background-color: rgba(88, 166, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center min-h-screen selection:bg-blue-100 selection:text-blue-700">
+    
+    <div class="dust-motes-container">
+        <span class="dust-mote mote1"></span>
+        <span class="dust-mote mote2"></span>
+        <span class="dust-mote mote3"></span>
+        <span class="dust-mote mote4"></span>
+        <span class="dust-mote mote5"></span>
+        <span class="dust-mote mote6"></span>
+    </div>
+
+    <div class="generator-container w-full max-w-4xl"> 
+        <header class="text-center mb-10 md:mb-12"> 
+            <h1 class="title-font text-4xl sm:text-5xl md:text-6xl mb-3">Generatorul de Urări</h1>
+            <p class="subtitle-font text-lg md:text-xl">Creează mesaje personalizate pentru orice ocazie.</p>
+        </header>
+
+        <div class="tabs-container" id="tabsContainer">
+        </div>
+
+        <div id="tab-content-container">
+        </div>
+        
+        <div id="global-actions-container" class="pt-8 mt-8 border-t border-[var(--color-surface-border)]">
+             <div id="favorites-button-container" class="text-center mb-6">
+            </div>
+        </div>
+        
+
+        <div id="loading-indicator" class="hidden loading-spinner-container">
+            <div class="loading-spinner"> 
+                <div></div> <div></div> <div></div>
+            </div>
+            <p class="label-style text-xl mt-6 text-[var(--color-text-primary)]">Se creează magia... Vă rugăm așteptați!</p>
+        </div>
+
+        <div id="error-message-container" class="hidden my-10 p-4 rounded-lg error-message-box"></div>
+        
+        <div id="gift-ideas-results-container" class="mt-12 md:mt-16"> 
+        </div>
+
+        <div id="favorites-modal" class="fixed inset-0 hidden items-center justify-center z-50 p-4">
+            <div id="favorites-modal-overlay" class="fixed inset-0 bg-black opacity-60"></div>
+            <div id="favorites-modal-content" class="bg-white p-6 md:p-8 rounded-lg shadow-xl z-10 w-full sm:w-11/12 md:w-2/3 lg:w-1/2 overflow-y-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="section-title !text-2xl !mb-0 !pb-0 !border-0">Urări Favorite</h2>
+                    <button id="close-favorites-modal" class="text-3xl text-gray-500 hover:text-gray-700 leading-none">&times;</button>
+                </div>
+                <div id="favorites-list-container">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center p-8 mt-16 text-sm text-gray-500"> 
+        <p>&copy; <span id="currentYear"></span> Generator de Urări Autentice. Creat cu inspirație.</p>
+    </footer>
+
+    <script>
+        // --- DOM Elements ---
+        const tabsContainer = document.getElementById('tabsContainer');
+        const tabContentContainer = document.getElementById('tab-content-container');
+        const giftIdeasResultsContainer = document.getElementById('gift-ideas-results-container');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const errorMessageContainer = document.getElementById('error-message-container');
+        const favoritesButtonContainer = document.getElementById('favorites-button-container');
+        const favoritesModal = document.getElementById('favorites-modal');
+        const favoritesModalOverlay = document.getElementById('favorites-modal-overlay');
+        const closeFavoritesModalButton = document.getElementById('close-favorites-modal');
+        const favoritesListContainer = document.getElementById('favorites-list-container');
+        
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        const API_MODEL = "gemini-2.0-flash";
+        const FAVORITES_KEY = 'generatorUrariFavorites';
+        let favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
+
+        const occasions = [
+            { 
+                id: 'la-multi-ani', title: 'La Mulți Ani 🎂', promptName: "La Mulți Ani", 
+                fields: [
+                    { id: 'name', label: 'Numele sărbătoritului/ei (opțional):', type: 'text', placeholder: 'Ex: Ana, Bunicul Ion' },
+                    { id: 'relationship', label: 'Relația:', type: 'text', placeholder: 'Ex: prietenă dragă, tată' },
+                    { id: 'hobbies', label: 'Hobby-uri/Pasiuni (opțional):', type: 'text', placeholder: 'Ex: cititul, călătoriile' },
+                    { id: 'quality', label: 'O calitate/detaliu special (opțional):', type: 'text', placeholder: 'Ex: mereu zâmbitoare' }
+                ],
+                tones: [
+                    { value: 'personal', text: 'Personal (apropiat)', selected: true },
+                    { value: 'prietenos', text: 'Prietenos' },
+                    { value: 'serios', text: 'Serios (formal)' },
+                    { value: 'sarcastic', text: 'Sarcastic (jucăuș)' },
+                    { value: 'poetic', text: 'Poetic' }
+                ],
+                showGiftButton: true
+            },
+            { 
+                id: 'craciun', title: 'Crăciun 🎄', promptName: "Crăciun",
+                fields: [
+                    { id: 'name', label: 'Nume destinatar (opțional):', type: 'text', placeholder: 'Ex: Familia Popescu, Dragi prieteni' },
+                    { id: 'relationship', label: 'Relația (opțional):', type: 'text', placeholder: 'Ex: prieteni, familie, colegi' }
+                ],
+                tones: [
+                    { value: 'personal', text: 'Personal', selected: true },
+                    { value: 'generic-whatsapp', text: 'Generic (WhatsApp)' },
+                    { value: 'facebook', text: 'Facebook' }
+                ],
+                options: [
+                    { id: 'includeReligiousNote', label: 'Include urare religioasă subtilă', type: 'checkbox' }
+                ],
+                showGiftButton: false
+            },
+            { 
+                id: 'an-nou', title: 'An Nou 🎆', promptName: "An Nou",
+                fields: [
+                    { id: 'name', label: 'Nume destinatar (opțional):', type: 'text', placeholder: 'Ex: Tuturor, Dragă Ana' },
+                    { id: 'relationship', label: 'Relația (opțional):', type: 'text', placeholder: 'Ex: prieteni, familie' }
+                ],
+                tones: [
+                    { value: 'personal', text: 'Personal', selected: true },
+                    { value: 'generic-whatsapp', text: 'Generic (WhatsApp)' },
+                    { value: 'facebook', text: 'Facebook' }
+                ],
+                showGiftButton: false
+            },
+            {
+                id: 'paste', title: 'Paște 🕊️', promptName: "Paște",
+                fields: [
+                    { id: 'name', label: 'Nume destinatar (opțional):', type: 'text', placeholder: 'Ex: Familia Ionescu' },
+                    { id: 'relationship', label: 'Relația (opțional):', type: 'text', placeholder: 'Ex: nași, prieteni apropiați' }
+                ],
+                tones: [ { value: 'personal', text: 'Personal', selected: true }, { value: 'generic-whatsapp', text: 'Generic (WhatsApp)' } ],
+                options: [ { id: 'includeTraditions', label: 'Include tradiții românești', type: 'checkbox' } ],
+                showGiftButton: false
+            },
+            {
+                id: '8-martie', title: '8 Martie 🌸', promptName: "8 Martie", specificGender: "female",
+                fields: [
+                    { id: 'name', label: 'Numele doamnei/domnișoarei:', type: 'text', placeholder: 'Ex: Mama, Ana, Doamna Profesoară', required: true },
+                    { id: 'relationship', label: 'Relația:', type: 'text', placeholder: 'Ex: mamă, iubită, colegă', required: true },
+                    { id: 'hobbies', label: 'Hobby-uri (opțional):', type: 'text', placeholder: 'Ex: florile, cărțile' }
+                ],
+                tones: [ { value: 'personal', text: 'Personal', selected: true }, { value: 'glumet', text: 'Glumeț' }, { value: 'facebook', text: 'Facebook' } ],
+                options: [ { id: 'forChild', label: 'Urare pentru copil (ex: fetiță)', type: 'checkbox' } ],
+                showGiftButton: true
+            },
+            {
+                id: 'zi-de-sfant', title: 'Zi de Sfânt 🙏', promptName: "Zi de Sfânt",
+                fields: [
+                    { id: 'firstName', label: 'Prenumele sărbătoritului/ei:', type: 'text', placeholder: 'Ex: Andrei, Maria', required: true },
+                    { id: 'saintName', label: 'Numele Sfântului (opțional):', type: 'text', placeholder: 'Ex: Sf. Andrei, Sf. Maria' },
+                    { id: 'relationship', label: 'Relația:', type: 'text', placeholder: 'Ex: prieten, fin, bunică', required: true }
+                ],
+                tones: [ { value: 'personal', text: 'Personal', selected: true }, { value: 'poetic', text: 'Poetic' }, { value: 'respectuos', text: 'Respectuos' } ],
+                showGiftButton: false
+            },
+             {
+                id: 'nunta', title: 'Nuntă 💍', promptName: "Nuntă",
+                fields: [
+                    { id: 'coupleNames', label: 'Numele mirilor (opțional):', type: 'text', placeholder: 'Ex: Ana și Dan' },
+                    { id: 'relationship', label: 'Relația cu mirii:', type: 'text', placeholder: 'Ex: prieteni, rude, colegi', required: true }
+                ],
+                tones: [ { value: 'emotional', text: 'Emoțional', selected: true }, { value: 'glumet', text: 'Glumeț' }, { value: 'formal', text: 'Formal' } ],
+                options: [ { id: 'modernCouple', label: 'Pentru un cuplu modern', type: 'checkbox' } ],
+                showGiftButton: false
+            },
+            {
+                id: 'botez', title: 'Botez 👶', promptName: "Botez", specificGender: "child",
+                fields: [
+                    { id: 'childName', label: 'Numele copilului (opțional):', type: 'text', placeholder: 'Ex: David, Sofia' },
+                    { id: 'parentsRelationship', label: 'Relația cu părinții:', type: 'text', placeholder: 'Ex: prieteni, fini', required: true }
+                ],
+                tones: [ { value: 'calduros', text: 'Călduros', selected: true }, { value: 'jucaus', text: 'Jucăuș' }, { value: 'religios-subtil', text: 'Religios subtil' } ],
+                options: [ 
+                    { id: 'addressedTo', label: 'Cui e adresată urarea?', type: 'radio', name:'addressedTo', options: [
+                        {value: 'copilului', text: 'Copilului', checked: true}, {value: 'parintilor', text: 'Părinților'}
+                    ]}
+                ],
+                showGiftButton: false
+            },
+             {
+                id: 'pensionare', title: 'Pensionare 🎁', promptName: "Pensionare",
+                fields: [
+                    { id: 'name', label: 'Numele persoanei:', type: 'text', placeholder: 'Ex: Domnul Ionescu', required: true },
+                    { id: 'relationship', label: 'Relația:', type: 'text', placeholder: 'Ex: coleg, mentor, vecin', required: true },
+                    { id: 'quality', label: 'O calitate/realizare:', type: 'text', placeholder: 'Ex: dedicarea, anii de muncă', required: true }
+                ],
+                tones: [ { value: 'emotional', text: 'Emoțional', selected: true }, { value: 'glumet', text: 'Glumeț' }, { value: 'formal', text: 'Formal' } ],
+                options: [ { id: 'newBeginnings', label: 'Include mesaj de început de nou drum', type: 'checkbox' } ],
+                showGiftButton: false
+            },
+            {
+                id: 'valentines-day', title: "Valentine's Day 💘", promptName: "Valentine's Day",
+                fields: [
+                    { id: 'name', label: 'Numele iubitei/iubitului (opțional):', type: 'text', placeholder: 'Ex: Iubirea mea, Alex' },
+                    { id: 'relationship', label: 'Tipul relației:', type: 'text', placeholder: 'Ex: partener/ă, soț/soție', required: true }
+                ],
+                tones: [ { value: 'romantic', text: 'Romantic', selected: true }, { value: 'glumet', text: 'Glumeț' }, { value: 'poetic', text: 'Poetic' } ],
+                options: [
+                     { id: 'romanticStyle', label: 'Stil romantic:', type: 'radio', name:'romanticStyle', options: [
+                        {value: 'wordPlay', text: 'Include joc de cuvinte romantic', checked: true}, {value: 'noSweetTalk', text: 'Fără dulcegării excesive'}
+                    ]}
+                ],
+                showGiftButton: true
+            },
+            {
+                id: 'condoleante', title: 'Condoleanțe 🕯️', promptName: "Condoleanțe", specificTone: "sobru",
+                fields: [
+                    { id: 'deceasedName', label: 'Numele persoanei decedate (opțional):', type: 'text', placeholder: 'Ex: Bunicul Vasile' },
+                    { id: 'relationshipToDeceasedOrFamily', label: 'Relația cu persoana decedată / familia:', type: 'text', placeholder: 'Ex: prieten al familiei, rudă', required: true }
+                ],
+                tones: [ { value: 'sobru', text: 'Sobru și respectuos', selected: true }, { value: 'emotional-cald', text: 'Emoțional și cald' } ],
+                options: [ { id: 'moralSupportEnding', label: 'Include încheiere cu sprijin moral', type: 'checkbox' } ],
+                showGiftButton: false
+            },
+            {
+                id: 'raspuns-urari', title: 'Răspuns Urări 💬', promptName: "Răspuns la Urări", isReplyGenerator: true,
+                fields: [
+                    { id: 'receivedWish', label: 'Urărea primită:', type: 'textarea', placeholder: 'Introduceți aici textul urării pe care ați primit-o...' },
+                    { id: 'senderRelationship', label: 'Relația cu expeditorul (opțional):', type: 'text', placeholder: 'Ex: prieten bun, colegă' }
+                ],
+                showGiftButton: false 
+            }
+        ];
+
+        let activeTabId = occasions[0].id;
+
+        // --- Function Definitions (Moved before execution) ---
+        function updateFavoritesButtonVisibility() {
+            if (favorites.length > 0) {
+                if (!document.getElementById('view-favorites-button')) {
+                    const button = document.createElement('button');
+                    button.id = 'view-favorites-button';
+                    button.classList.add('btn-primary', 'btn-purple', 'w-full', 'sm:w-auto', 'mx-auto');
+                    button.innerHTML = `❤️ Vezi Favorite (${favorites.length})`;
+                    button.onclick = openFavoritesModal;
+                    favoritesButtonContainer.innerHTML = '';
+                    favoritesButtonContainer.appendChild(button);
+                } else {
+                     document.getElementById('view-favorites-button').innerHTML = `❤️ Vezi Favorite (${favorites.length})`;
+                }
+            } else {
+                favoritesButtonContainer.innerHTML = '';
+            }
+        }
+
+        function openFavoritesModal() {
+            renderFavoritesList();
+            favoritesModal.classList.remove('hidden');
+            favoritesModal.classList.add('flex');
+            setTimeout(() => {
+                const modalContent = document.getElementById('favorites-modal-content');
+                if (modalContent) { 
+                    modalContent.style.transform = 'scale(1)';
+                    modalContent.style.opacity = '1';
+                }
+                const overlay = document.getElementById('favorites-modal-overlay');
+                if (overlay) { 
+                    overlay.style.opacity = '0.6'; 
+                }
+            }, 10); 
+        }
+
+        function closeFavoritesModal() {
+            const modalContent = document.getElementById('favorites-modal-content');
+            if (modalContent) {
+                modalContent.style.transform = 'scale(0.95)';
+                modalContent.style.opacity = '0';
+            }
+            const overlay = document.getElementById('favorites-modal-overlay');
+            if (overlay) {
+                overlay.style.opacity = '0';
+            }
+            setTimeout(() => {
+                 if(favoritesModal) {
+                    favoritesModal.classList.add('hidden');
+                    favoritesModal.classList.remove('flex');
+                 }
+            }, 300); 
+        }
+
+        function renderFavoritesList() {
+            favoritesListContainer.innerHTML = '';
+            if (favorites.length === 0) {
+                favoritesListContainer.innerHTML = '<p class="text-[var(--color-text-secondary)] text-center py-4">Nu ai nicio urare salvată ca favorită încă.</p>';
+                return;
+            }
+            const sortedFavorites = [...favorites].sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+
+            sortedFavorites.forEach((favWish, index) => {
+                const wishCard = createWishCardDOM(favWish.text, `fav-${index}`, favWish.id, true, false);
+                
+                const removeButton = document.createElement('button');
+                removeButton.classList.add('btn-secondary', 'mt-3', 'ml-auto', 'block', '!bg-red-100', '!text-red-700', '!border-red-300', 'hover:!bg-red-200');
+                removeButton.innerHTML = 'Șterge';
+                removeButton.onclick = () => {
+                    removeFavorite(favWish.id);
+                    renderFavoritesList(); 
+                };
+                
+                const paragraph = wishCard.querySelector('.wish-text');
+                if (paragraph) {
+                     paragraph.insertAdjacentElement('afterend', removeButton);
+                } else {
+                    wishCard.appendChild(removeButton);
+                }
+                favoritesListContainer.appendChild(wishCard);
+                setTimeout(() => wishCard.classList.add('visible'), 10 + index * 120);
+            });
+        }
+
+        function toggleFavorite(wishText, wishId, heartButton) {
+            const existingIndex = favorites.findIndex(fav => fav.id === wishId);
+            if (existingIndex > -1) {
+                favorites.splice(existingIndex, 1);
+                heartButton.classList.remove('is-favorite');
+                heartButton.innerHTML = getFavoriteIconSVG(false);
+            } else {
+                favorites.push({ id: wishId, text: wishText, dateAdded: new Date().toISOString() });
+                heartButton.classList.add('is-favorite');
+                heartButton.innerHTML = getFavoriteIconSVG(true);
+            }
+            localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+            updateFavoritesButtonVisibility();
+        }
+        
+        function removeFavorite(wishId) {
+            favorites = favorites.filter(fav => fav.id !== wishId);
+            localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+            updateFavoritesButtonVisibility();
+        }
+
+        function getFavoriteIconSVG(isFavorite) {
+            if (isFavorite) {
+                return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
+            }
+            return `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>`;
+        }
+        
+        async function callGeminiAPI(promptText, buttonElement, originalButtonText) {
+            let isGlobalLoading = false;
+            const allTabGenerateButtons = document.querySelectorAll('.generate-wish-for-tab-button');
+
+            if (buttonElement) { 
+                buttonElement.disabled = true;
+                buttonElement.innerHTML = `<div class="small-loading-spinner"></div> Procesare...`;
+            } else { 
+                isGlobalLoading = true;
+                loadingIndicator.classList.remove('hidden');
+                allTabGenerateButtons.forEach(btn => btn.disabled = true);
+                const giftBtnGlobal = document.getElementById('generate-gifts-button-global');
+                if(giftBtnGlobal) giftBtnGlobal.disabled = true;
+            }
+            errorMessageContainer.classList.add('hidden');
+
+            try {
+                let chatHistory = [{ role: "user", parts: [{ text: promptText }] }];
+                const payload = { contents: chatHistory };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${API_MODEL}:generateContent?key=${apiKey}`;
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({ error: { message: "Răspuns invalid de la server." } }));
+                    throw new Error(`Serviciul de generare a întâmpinat o problemă: ${errorData.error?.message || response.statusText} (Cod: ${response.status})`);
+                }
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    let text = result.candidates[0].content.parts[0].text;
+                    text = text.replace(/\([\s\S]*?\)/g, '').replace(/\[[\s\S]*?\]/g, ''); 
+                    return text.trim();
+                } else {
+                    throw new Error("Am primit un răspuns neașteptat de la serviciul de generare.");
+                }
+            } catch (error) {
+                console.error('Eroare la apelul API Gemini:', error);
+                displayError(error.message);
+                return null;
+            } finally {
+                if (buttonElement) {
+                    buttonElement.disabled = false;
+                    buttonElement.innerHTML = originalButtonText;
+                }
+                if (isGlobalLoading) {
+                    loadingIndicator.classList.add('hidden');
+                    allTabGenerateButtons.forEach(btn => btn.disabled = false);
+                    const giftBtnGlobal = document.getElementById('generate-gifts-button-global');
+                    if(giftBtnGlobal) giftBtnGlobal.disabled = false;
+                }
+            }
+        }
+        
+        function createWishCardDOM(wishText, baseId, uniqueWishId, isFavoriteCard = false, includeActions = true) {
+            const cleanedWish = wishText.replace(/^(\d+\.?\s*|-\s*|\*\s*)/, '').trim();
+            const wishElement = document.createElement('div');
+            wishElement.classList.add('wish-card');
+            wishElement.id = baseId;
+
+            const paragraph = document.createElement('p');
+            paragraph.classList.add('wish-text');
+            paragraph.textContent = cleanedWish;
+            
+            const buttonsWrapper = document.createElement('div');
+            buttonsWrapper.classList.add('btn-icon-wrapper');
+            
+            const copyButtonContainer = document.createElement('div'); 
+            copyButtonContainer.classList.add('btn-copy-container');
+
+            const copyButton = document.createElement('button');
+            copyButton.classList.add('btn-copy');
+            copyButton.title = "Copiază textul";
+            copyButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>`;
+            copyButton.onclick = (event) => copyWishText(cleanedWish, event.currentTarget);
+            
+            const copiedFeedback = document.createElement('span');
+            copiedFeedback.classList.add('copied-feedback');
+            copiedFeedback.textContent = 'Copiat!';
+            
+            copyButtonContainer.appendChild(copyButton);
+            copyButtonContainer.appendChild(copiedFeedback); 
+            buttonsWrapper.appendChild(copyButtonContainer);
+
+
+            if (!isFavoriteCard && includeActions) { 
+                const heartButton = document.createElement('button');
+                heartButton.classList.add('btn-favorite');
+                const isCurrentlyFavorite = favorites.some(fav => fav.id === uniqueWishId);
+                if (isCurrentlyFavorite) heartButton.classList.add('is-favorite');
+                heartButton.innerHTML = getFavoriteIconSVG(isCurrentlyFavorite);
+                heartButton.title = isCurrentlyFavorite ? "Șterge de la favorite" : "Adaugă la favorite";
+                heartButton.onclick = () => {
+                    toggleFavorite(cleanedWish, uniqueWishId, heartButton);
+                    heartButton.title = favorites.some(fav => fav.id === uniqueWishId) ? "Șterge de la favorite" : "Adaugă la favorite";
+                };
+                buttonsWrapper.insertBefore(heartButton, copyButtonContainer); 
+            }
+            
+            wishElement.appendChild(buttonsWrapper); 
+            wishElement.appendChild(paragraph); 
+            wishElement.insertBefore(paragraph, buttonsWrapper);
+
+            if (!isFavoriteCard && includeActions) {
+                const actionsContainer = document.createElement('div');
+                actionsContainer.classList.add('mt-6', 'flex', 'flex-wrap', 'gap-2');
+
+                const continueButton = document.createElement('button');
+                continueButton.classList.add('btn-secondary');
+                continueButton.innerHTML = '✨ Continuă Urarea';
+                continueButton.onclick = () => handleContinueWish(cleanedWish, baseId, continueButton, activeTabId);
+                actionsContainer.appendChild(continueButton);
+                
+                wishElement.appendChild(actionsContainer);
+            }
+            return wishElement;
+        }
+                
+        function copyWishText(textToCopy, buttonElement) {
+            const textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+            textarea.style.position = 'fixed'; 
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    let feedbackElement = buttonElement.closest('.btn-copy-container').querySelector('.copied-feedback');
+                    if (feedbackElement) {
+                        feedbackElement.classList.add('show');
+                        setTimeout(() => {
+                            feedbackElement.classList.remove('show');
+                        }, 1500);
+                    }
+                } else { displayError("Nu s-a putut copia textul."); }
+            } catch (err) { displayError("A apărut o eroare la copierea textului."); }
+            document.body.removeChild(textarea);
+        }
+        
+        async function handleContinueWish(originalWishText, wishElementId, button, occasionId) {
+            const currentOccasion = occasions.find(o => o.id === occasionId);
+            let name = "";
+            // Determine the correct name field based on the occasion
+            if (occasionId === 'zi-de-sfant') {
+                const firstNameInput = document.getElementById(`firstName-${occasionId}`);
+                if (firstNameInput) name = firstNameInput.value.trim();
+            } else if (occasionId === 'nunta') {
+                 const coupleNamesInput = document.getElementById(`coupleNames-${occasionId}`);
+                 if (coupleNamesInput) name = coupleNamesInput.value.trim() || "miri";
+            } else if (occasionId === 'botez') {
+                 const childNameInput = document.getElementById(`childName-${occasionId}`);
+                 if (childNameInput) name = childNameInput.value.trim() || "micuțul/micuța";
+            } else {
+                const nameInputForTab = document.getElementById(`name-${occasionId}`);
+                if (nameInputForTab) name = nameInputForTab.value.trim();
+            }
+
+            const nameInstruction = name ? ` Luând în considerare că urarea este pentru ${name},` : "";
+            
+            const prompt = `Continuă următoarea urare de "${currentOccasion.promptName}", adăugând mai multe detalii, emoție sau o concluzie frumoasă.${nameInstruction} Păstrează tonul și stilul original. Urare originală: "${originalWishText}" Asigură-te că și continuarea este potrivită pentru un public larg, inclusiv copii. Continuarea NU trebuie să conțină niciun fel de comentarii, explicații meta-textuale sau text în paranteze care nu face parte direct din urarea propriu-zisă.`;
+            const originalButtonText = button.innerHTML;
+            const continuedText = await callGeminiAPI(prompt, button, originalButtonText);
+
+            if (continuedText) {
+                const wishElement = document.getElementById(wishElementId);
+                if (wishElement) {
+                    let continuedParagraph = wishElement.querySelector('.continued-wish-text');
+                    if (!continuedParagraph) {
+                        continuedParagraph = document.createElement('p');
+                        continuedParagraph.classList.add('continued-wish-text');
+                        const actionsContainer = wishElement.querySelector('.flex.flex-wrap.gap-2');
+                        if (actionsContainer) {
+                            actionsContainer.insertAdjacentElement('afterend', continuedParagraph);
+                        } else {
+                            wishElement.querySelector('.wish-text').insertAdjacentElement('afterend', continuedParagraph);
+                        }
+                    }
+                    continuedParagraph.textContent = continuedText.trim();
+                    button.innerHTML = "Extins ✨";
+                    button.disabled = true;
+                }
+            }
+        }
+        
+        function displayError(message) {
+            errorMessageContainer.innerHTML = `<p class="font-semibold">Oops! A apărut o problemă:</p><p class="mt-1">${message}</p>`;
+            errorMessageContainer.classList.remove('hidden');
+            errorMessageContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // --- Tab Specific Functions ---
+        function createTabs() {
+            tabsContainer.innerHTML = ''; 
+            tabContentContainer.innerHTML = ''; 
+
+            occasions.forEach((occasion, index) => {
+                const button = document.createElement('button');
+                button.classList.add('tab-button');
+                button.textContent = occasion.title;
+                button.dataset.tabId = occasion.id;
+                if (index === 0) {
+                    button.classList.add('active');
+                }
+                button.addEventListener('click', () => switchTab(occasion.id));
+                tabsContainer.appendChild(button);
+
+                const contentPane = document.createElement('div');
+                contentPane.id = occasion.id;
+                contentPane.classList.add('tab-content');
+                if (index === 0) {
+                    contentPane.classList.add('active');
+                }
+                
+                let formHTML = '<div class="space-y-6 md:space-y-8">';
+                occasion.fields.forEach(field => {
+                    formHTML += `<div><label for="${field.id}-${occasion.id}" class="block label-style">${field.label}</label>`;
+                    if (field.type === 'textarea') {
+                        formHTML += `<textarea id="${field.id}-${occasion.id}" class="textarea-style" placeholder="${field.placeholder || ''}"></textarea>`;
+                    } else {
+                        formHTML += `<input type="${field.type}" id="${field.id}-${occasion.id}" class="input-style" placeholder="${field.placeholder || ''}">`;
+                    }
+                    formHTML += `</div>`;
+                });
+
+                if (occasion.tones) {
+                    formHTML += `<div><label for="tone-${occasion.id}" class="block label-style">Alege stilul urării/mesajului:</label><select id="tone-${occasion.id}" class="select-style">`;
+                    occasion.tones.forEach(tone => {
+                        formHTML += `<option value="${tone.value}" ${tone.selected ? 'selected' : ''}>${tone.text}</option>`;
+                    });
+                    formHTML += `</select></div>`;
+                }
+
+                if (occasion.options) {
+                    occasion.options.forEach(option => {
+                        formHTML += `<div class="mt-4">`;
+                        if (option.type === 'checkbox') {
+                            formHTML += `<label class="checkbox-label"><input type="checkbox" id="${option.id}-${occasion.id}" class="mr-2"> ${option.label}</label>`;
+                        } else if (option.type === 'radio') {
+                            formHTML += `<span class="radio-group-label">${option.label}</span><div class="flex flex-wrap gap-x-4 gap-y-2">`;
+                            option.options.forEach(radioOpt => {
+                                formHTML += `<label class="radio-label"><input type="radio" name="${option.name}-${occasion.id}" value="${radioOpt.value}" ${radioOpt.checked ? 'checked' : ''}> ${radioOpt.text}</label>`;
+                            });
+                            formHTML += `</div>`;
+                        }
+                        formHTML += `</div>`;
+                    });
+                }
+                
+                formHTML += `<div class="main-action-buttons grid grid-cols-1 gap-4 pt-6"> 
+                                <button class="btn-primary w-full generate-wish-for-tab-button" data-occasion-id="${occasion.id}">
+                                    Generează ${occasion.isReplyGenerator ? 'Răspunsuri' : occasion.promptName}
+                                </button>
+                             </div>`;
+                
+                if (occasion.showGiftButton) {
+                    formHTML += `<div class="pt-4">
+                                    <button class="btn-primary btn-gift w-full generate-gifts-for-tab-button" data-occasion-id="${occasion.id}">
+                                        <span class="mr-1.5">🎁</span> Generează Idei de Cadouri
+                                    </button>
+                                 </div>`;
+                }
+
+                formHTML += `</div><div id="wishes-results-container-${occasion.id}" class="mt-12 md:mt-16"></div>`;
+                contentPane.innerHTML = formHTML;
+                tabContentContainer.appendChild(contentPane);
+            });
+            
+            document.querySelectorAll('.generate-wish-for-tab-button').forEach(button => {
+                button.addEventListener('click', handleGenerateWishForTab);
+            });
+             document.querySelectorAll('.generate-gifts-for-tab-button').forEach(button => {
+                button.addEventListener('click', handleGenerateGiftsForTab);
+            });
+        }
+
+        function switchTab(tabId) {
+            activeTabId = tabId;
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.toggle('active', button.dataset.tabId === tabId);
+            });
+            document.querySelectorAll('.tab-content').forEach(pane => {
+                pane.classList.toggle('active', pane.id === tabId);
+            });
+            giftIdeasResultsContainer.innerHTML = ''; // Clear global gift ideas if shown outside tab
+        }
+
+        async function handleGenerateWishForTab(event) {
+            const occasionId = event.target.dataset.occasionId;
+            const currentOccasion = occasions.find(o => o.id === occasionId);
+            const resultsContainer = document.getElementById(`wishes-results-container-${occasionId}`);
+            resultsContainer.innerHTML = ''; 
+
+            let promptDetails = {};
+            let mainName = ""; // Used for constructing nameString
+
+            currentOccasion.fields.forEach(field => {
+                const inputElement = document.getElementById(`${field.id}-${occasionId}`);
+                if (inputElement) {
+                    promptDetails[field.id] = inputElement.value.trim();
+                    // Consolidate main name detection
+                    if (['name', 'firstName', 'coupleNames', 'childName', 'deceasedName'].includes(field.id)) {
+                        if (promptDetails[field.id]) mainName = promptDetails[field.id];
+                    }
+                }
+            });
+            
+            // Specific name handling for certain occasions
+            if (currentOccasion.id === 'nunta' && !mainName) mainName = "miri";
+            if (currentOccasion.id === 'botez' && !mainName) mainName = "micuțul/micuța";
+
+
+            const toneSelectElement = document.getElementById(`tone-${occasionId}`);
+            const selectedTone = toneSelectElement ? toneSelectElement.value : (currentOccasion.specificTone || "prietenos");
+            
+            let optionsString = "";
+            if (currentOccasion.options) {
+                currentOccasion.options.forEach(opt => {
+                    if (opt.type === 'checkbox') {
+                        const checkbox = document.getElementById(`${opt.id}-${occasionId}`);
+                        if (checkbox && checkbox.checked) {
+                            optionsString += ` Se dorește și: ${opt.label}.`;
+                        }
+                    } else if (opt.type === 'radio') {
+                        const radioChecked = document.querySelector(`input[name="${opt.name}-${occasionId}"]:checked`);
+                        if (radioChecked) {
+                            const selectedRadioOption = opt.options.find(r => r.value === radioChecked.value);
+                            if (selectedRadioOption) optionsString += ` Stilul ales: ${selectedRadioOption.text}.`;
+                        }
+                    }
+                });
+            }
+            
+            let nameString = mainName ? `pentru ${mainName}` : (currentOccasion.specificGender === "female" ? "pentru ea" : (currentOccasion.specificGender === "child" ? "pentru prunc" : "pentru cineva"));
+            if (currentOccasion.id === 'nunta') nameString = mainName ? `pentru mirii ${mainName}` : `pentru miri`;
+            if (currentOccasion.id === 'botez') nameString = mainName ? `pentru ${mainName} și părinții săi` : `pentru noul-născut și părinții săi`;
+            if (currentOccasion.id === 'condoleante') nameString = mainName ? `pentru familia lui/ei ${mainName}` : `pentru familia îndoliată`;
+
+
+            let detailsForPrompt = [];
+            if(promptDetails.relationship) detailsForPrompt.push(`relația fiind ${promptDetails.relationship}`);
+            if(promptDetails.hobbies && currentOccasion.fields.find(f=>f.id === 'hobbies')) detailsForPrompt.push(`cu hobby-uri precum ${promptDetails.hobbies}`); // Check if field exists for this occasion
+            if(promptDetails.quality && currentOccasion.fields.find(f=>f.id === 'quality')) detailsForPrompt.push(`o calitate specială fiind ${promptDetails.quality}`);
+            if(promptDetails.saintName && currentOccasion.id === 'zi-de-sfant') detailsForPrompt.push(`care poartă numele Sfântului/Sfintei ${promptDetails.saintName}`);
+            if(promptDetails.parentsRelationship && currentOccasion.id === 'botez') detailsForPrompt.push(`părinții fiind ${promptDetails.parentsRelationship}`);
+            if(promptDetails.relationshipToDeceasedOrFamily && currentOccasion.id === 'condoleante') detailsForPrompt.push(`relația cu persoana decedată/familia fiind ${promptDetails.relationshipToDeceasedOrFamily}`);
+
+
+            let detailsString = detailsForPrompt.length > 0 ? nameString + " (" + detailsForPrompt.join(", ") + ")" : nameString;
+            if (optionsString) detailsString += ` ${optionsString}`;
+
+            let toneInstruction = "";
+            const foundTone = currentOccasion.tones?.find(t => t.value === selectedTone);
+            toneInstruction = foundTone ? `într-un stil ${foundTone.text.toLowerCase().replace(/\s*\(.*?\)\s*/g, '')}.` : `într-un stil prietenos.`; // Remove text in parenthesis from tone for prompt
+            if (currentOccasion.specificTone) toneInstruction = `într-un stil ${currentOccasion.specificTone}.`;
+
+            let basePrompt = `Generează 2-3 sugestii de mesaje ${toneInstruction} ${detailsString} Cu ocazia "${currentOccasion.promptName}".`;
+            if (currentOccasion.isReplyGenerator) {
+                 if (!promptDetails.receivedWish) {
+                    displayError("Te rugăm să introduci textul urării primite pentru a genera un răspuns.");
+                    return;
+                }
+                basePrompt = `Am primit următoarea urare: "${promptDetails.receivedWish}". ${promptDetails.senderRelationship ? `Expeditorul este ${promptDetails.senderRelationship}.` : "Expeditorul este o cunoștință."} Generează 2-3 sugestii scurte și politicoase de răspunsuri de mulțumire în limba română. Răspunsurile să fie calde, apreciative și potrivite pentru context.`;
+            }
+            
+            const prompt = `${basePrompt} Mesajele să fie creative, cu specific românesc autentic (dacă este cazul ocaziei), evitând clișeele. Fiecare mesaj să fie distinct, având aproximativ 2-3 fraze și să sune natural. Adaptează mesajele pentru a reflecta detaliile oferite. Mesajele generate NU trebuie să conțină niciun fel de comentarii, explicații meta-textuale sau text în paranteze care nu face parte direct din mesajul propriu-zis.`;
+            
+            const originalButtonText = event.target.textContent;
+            const generatedText = await callGeminiAPI(prompt, null, originalButtonText);
+
+            if (generatedText) {
+                const wishesArray = generatedText.split(/\n\s*(?:\d+\.?\s*|-\s*|\*\s*)\s*|\n\n+/).map(w => w.trim()).filter(wish => wish && wish.length > 10);
+                if (wishesArray.length > 0) {
+                    displayWishes(wishesArray, resultsContainer, `Sugestii pentru ${currentOccasion.promptName}:`);
+                } else if (generatedText.trim().length > 10) {
+                    displayWishes([generatedText.trim()], resultsContainer, `Sugestii pentru ${currentOccasion.promptName}:`);
+                } else {
+                    displayError(`Nu am putut extrage mesajele pentru ${currentOccasion.promptName}. Încearcă din nou.`);
+                }
+            }
+        }
+        
+        async function handleGenerateGiftsForTab(event) {
+            const occasionId = event.target.dataset.occasionId;
+            const currentOccasion = occasions.find(o => o.id === occasionId);
+            giftIdeasResultsContainer.innerHTML = ''; 
+
+            let promptDetails = {};
+             currentOccasion.fields.forEach(field => {
+                const inputElement = document.getElementById(`${field.id}-${occasionId}`);
+                if (inputElement) promptDetails[field.id] = inputElement.value.trim();
+            });
+            const name = promptDetails.name || promptDetails.firstName || promptDetails.coupleNames || promptDetails.childName || "";
+
+            if (!promptDetails.hobbies && !promptDetails.quality && !promptDetails.relationship && !name) {
+                displayError("Pentru sugestii de cadouri, completează detalii precum hobby-uri, calități sau relația în tabul curent.");
+                return;
+            }
+
+            let details = [];
+            if (name) details.push(`pentru ${name}`);
+            if (promptDetails.relationship) details.push(name ? `care este ${promptDetails.relationship}` : `pentru ${promptDetails.relationship}`);
+            if (promptDetails.hobbies) details.push(`căruia/căreia îi plac ${promptDetails.hobbies}`);
+            if (promptDetails.quality) details.push(`și care este o persoană ${promptDetails.quality}`);
+            
+            const giftPrompt = `Generează 5-7 idei de cadouri creative și potrivite ${details.join(", ")} pentru ocazia "${currentOccasion.promptName}". Sugestiile să fie variate și sigure. Prima linie să fie o introducere prietenoasă. Apoi, listă fără asteriscuri. Fără comentarii meta.`;
+            
+            const originalButtonText = event.target.innerHTML;
+            const generatedTextWithIntro = await callGeminiAPI(giftPrompt, null, originalButtonText);
+
+             if (generatedTextWithIntro) {
+                const lines = generatedTextWithIntro.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+                let introText = "";
+                let giftIdeasArray = [];
+
+                if (lines.length > 0) {
+                    introText = lines[0]; 
+                    giftIdeasArray = lines.slice(1).map(idea => idea.replace(/^(\d+\.?\s*|-\s*|\*\s*)/, '').trim()).filter(idea => idea && idea.length > 5);
+                }
+                
+                if (giftIdeasArray.length > 0) {
+                    displayGiftIdeas(giftIdeasArray, introText);
+                } else if (lines.length > 0 && lines.slice(1).join("").trim().length > 5) { 
+                     displayGiftIdeas([lines.slice(1).join("\n").replace(/^(\d+\.?\s*|-\s*|\*\s*)/, '').trim()], introText);
+                } else {
+                    displayError("Nu am putut genera idei de cadouri momentan.");
+                }
+            }
+        }
+
+        function displayWishes(wishesArray, containerElement, title = "Sugestii de Urări:") { 
+            containerElement.innerHTML = `<h2 class="section-title text-center !text-xl !mb-6">${title}</h2>`;
+            wishesArray.forEach((wish, index) => {
+                const uniqueWishId = `wish-text-${activeTabId}-${Date.now()}-${index}`; 
+                const domWishId = `wish-dom-${activeTabId}-${index}`;
+                const wishElement = createWishCardDOM(wish, domWishId, uniqueWishId);
+                containerElement.appendChild(wishElement);
+                setTimeout(() => wishElement.classList.add('visible'), 10 + index * 120);
+            });
+        }
+
+        function displayGiftIdeas(ideasArray, introText = "") {
+            giftIdeasResultsContainer.innerHTML = '<h2 class="section-title text-center">🎁 Idei de Cadouri Inspirate:</h2>'; 
+            
+            if (introText) {
+                const introElement = document.createElement('p');
+                introElement.classList.add('ai-intro-text');
+                introElement.textContent = introText;
+                giftIdeasResultsContainer.appendChild(introElement);
+            }
+
+            const listElement = document.createElement('ul');
+            listElement.classList.add('gift-ideas-list');
+
+            ideasArray.forEach(ideaText => {
+                const cleanedIdea = ideaText.replace(/\*/g, '').trim();
+                if(cleanedIdea.length === 0) return;
+                const listItem = document.createElement('li');
+                listItem.textContent = cleanedIdea;
+                listElement.appendChild(listItem);
+            });
+            giftIdeasResultsContainer.appendChild(listElement);
+             giftIdeasResultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function displayError(message) {
+            errorMessageContainer.innerHTML = `<p class="font-semibold">Oops! A apărut o problemă:</p><p class="mt-1">${message}</p>`;
+            errorMessageContainer.classList.remove('hidden');
+            errorMessageContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // --- Initialize Tabs ---
+        createTabs(); 
+        if (occasions.length > 0) {
+            switchTab(occasions[0].id); 
+        }
+        updateFavoritesButtonVisibility(); 
+
+    </script>
+</body>
+</html>
