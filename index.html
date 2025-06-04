@@ -663,7 +663,7 @@
             }
         }
         
-        function createWishCardDOM(wishText, baseId, uniqueWishId, isFavoriteCard = false, includeActions = true) {
+        function createWishCardDOM(wishText, baseId, uniqueWishId, isFavoriteCard = false, includeActions = true, cardOccasionId = activeTabId) {
             const cleanedWish = wishText.replace(/^(\d+\.?\s*|-\s*|\*\s*)/, '').trim();
             const wishElement = document.createElement('div');
             wishElement.classList.add('wish-card');
@@ -719,7 +719,7 @@
                 const continueButton = document.createElement('button');
                 continueButton.classList.add('btn-secondary');
                 continueButton.innerHTML = '✨ Continuă Urarea';
-                continueButton.onclick = () => handleContinueWish(cleanedWish, baseId, continueButton, activeTabId);
+                continueButton.onclick = () => handleContinueWish(cleanedWish, baseId, continueButton, cardOccasionId);
                 actionsContainer.appendChild(continueButton);
                 
                 wishElement.appendChild(actionsContainer);
