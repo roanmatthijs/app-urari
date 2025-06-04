@@ -269,10 +269,32 @@
         .radio-label:hover {
             background-color: rgba(88, 166, 255, 0.05);
         }
+        .ad-sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 160px;         /* adjust width as needed */
+            z-index: 2;
+            pointer-events: none; /* allow underlying page scroll */
+        }
+        .ad-sidebar > * { pointer-events: auto; }
+        .ad-left { left: 0; }
+        .ad-right { right: 0; }
+
+        @media (max-width: 1024px) {
+            .ad-sidebar { display: none; }
+        }
     </style>
 </head>
 <body class="flex flex-col items-center min-h-screen selection:bg-blue-100 selection:text-blue-700">
-    
+
+    <div id="ad-left" class="ad-sidebar ad-left hidden lg:block">
+        <!-- ad markup goes here -->
+    </div>
+    <div id="ad-right" class="ad-sidebar ad-right hidden lg:block">
+        <!-- ad markup goes here -->
+    </div>
+
     <div class="dust-motes-container">
         <span class="dust-mote mote1"></span>
         <span class="dust-mote mote2"></span>
