@@ -18,13 +18,19 @@ describe('createWishCardDOM', () => {
     const el = createWishCardDOM('Happy wishes', 'wish-1', 'u1');
     expect(el).not.toBeNull();
     expect(el.querySelector('p.wish-text').textContent).toBe('Happy wishes');
-    expect(el.querySelector('button.btn-copy')).not.toBeNull();
+    const copyBtn = el.querySelector('button.btn-copy');
+    expect(copyBtn).not.toBeNull();
+    expect(copyBtn.getAttribute('aria-label')).toBe(copyBtn.title);
+    const heartBtn = el.querySelector('button.btn-favorite');
+    expect(heartBtn.getAttribute('aria-label')).toBe(heartBtn.title);
     expect(el.querySelector('button.btn-secondary')).not.toBeNull();
   });
 
   test('returns a DOM element without continue button when includeActions=false', () => {
     const el = createWishCardDOM('Happy', 'wish-2', 'u2', false, false);
-    expect(el.querySelector('button.btn-copy')).not.toBeNull();
+    const copyBtn = el.querySelector('button.btn-copy');
+    expect(copyBtn).not.toBeNull();
+    expect(copyBtn.getAttribute('aria-label')).toBe(copyBtn.title);
     expect(el.querySelector('button.btn-secondary')).toBeNull();
   });
 });
