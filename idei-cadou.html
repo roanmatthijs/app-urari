@@ -21,28 +21,51 @@
     <main class="flex-grow w-full px-4 flex items-start justify-center">
         <div class="generator-container w-full max-w-2xl">
             <h1 class="text-3xl sm:text-4xl font-bold text-[#58a6ff] mb-8 text-center">Generare idei de cadouri</h1>
-            <div class="mb-6 text-center"><a href="index.html" class="text-[#58a6ff] hover:text-[#79c0ff] underline">Acasă</a></div>
+            <div class="mb-6 flex justify-between">
+                <a href="index.html" class="icon-nav-btn" aria-label="Acasă">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9.75L12 3l9 6.75V21a.75.75 0 0 1-.75.75H3.75A.75.75 0 0 1 3 21V9.75z"/><path d="M9 22V12h6v10" stroke="#0d1117" stroke-width="0"/></svg>
+                </a>
+                <a href="index.html" class="icon-nav-btn" aria-label="Înapoi">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M15.75 19.5L8.25 12l7.5-7.5" stroke="#0d1117" stroke-width="0"/></svg>
+                </a>
+            </div>
             <form id="gift-form" class="space-y-4">
                 <div>
                     <label class="label-style" for="dest">Nume destinatar (opțional)</label>
-                    <input id="dest" type="text" class="input-style" placeholder="Ex: Ana" />
+                    <div class="flex items-center gap-2">
+                        <input id="dest" type="text" class="input-style flex-grow" placeholder="Ex: Ana" />
+                        <button type="button" class="clear-field-btn" aria-label="Șterge">&times;</button>
+                    </div>
                 </div>
                 <div>
                     <label class="label-style" for="age">Vârsta</label>
-                    <input id="age" type="number" class="input-style" placeholder="30" />
+                    <div class="flex items-center gap-2">
+                        <input id="age" type="number" class="input-style flex-grow" placeholder="30" />
+                        <button type="button" class="clear-field-btn" aria-label="Șterge">&times;</button>
+                    </div>
                 </div>
                 <div>
                     <label class="label-style" for="rel">Relația cu tine</label>
-                    <input id="rel" type="text" class="input-style" placeholder="Ex: colegă" />
+                    <div class="flex items-center gap-2">
+                        <input id="rel" type="text" class="input-style flex-grow" placeholder="Ex: colegă" />
+                        <button type="button" class="clear-field-btn" aria-label="Șterge">&times;</button>
+                    </div>
                 </div>
                 <div>
                     <label class="label-style" for="occ">Ocazia</label>
-                    <input id="occ" type="text" class="input-style" placeholder="Zi de naștere" />
+                    <div class="flex items-center gap-2">
+                        <input id="occ" type="text" class="input-style flex-grow" placeholder="Zi de naștere" />
+                        <button type="button" class="clear-field-btn" aria-label="Șterge">&times;</button>
+                    </div>
                 </div>
                 <div>
                     <label class="label-style" for="hobby">Interese și hobby-uri (opțional)</label>
-                    <input id="hobby" type="text" class="input-style" placeholder="Fotografie, lectură" />
+                    <div class="flex items-center gap-2">
+                        <input id="hobby" type="text" class="input-style flex-grow" placeholder="Fotografie, lectură" />
+                        <button type="button" class="clear-field-btn" aria-label="Șterge">&times;</button>
+                    </div>
                 </div>
+                <div><button type="button" id="clear-form" class="btn-secondary w-full">Șterge tot</button></div>
                 <button type="button" id="gen-btn" class="btn-primary w-full">Generează idei de cadou</button>
             </form>
             <div id="gift-results" class="mt-8 hidden">
@@ -66,6 +89,31 @@
         const genBtn = document.getElementById('gen-btn');
         const resultsContainer = document.getElementById('gift-results');
         const errorContainer = document.getElementById('error-message-container');
+        const fieldsIds = ['dest','age','rel','occ','hobby'];
+        fieldsIds.forEach(id => {
+            const el = document.getElementById(id);
+            const stored = sessionStorage.getItem(`gift-${id}`);
+            if(stored !== null) el.value = stored;
+            el.addEventListener('input', () => sessionStorage.setItem(`gift-${id}`, el.value));
+        });
+        const storedRes = sessionStorage.getItem('gift-results');
+        if(storedRes) { resultsContainer.innerHTML = storedRes; resultsContainer.classList.remove('hidden'); }
+        document.querySelectorAll('.clear-field-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const input = btn.parentElement.querySelector('input');
+                if(input){ input.value=''; input.dispatchEvent(new Event('input')); }
+            });
+        });
+        const clearFormBtn = document.getElementById('clear-form');
+        if(clearFormBtn) clearFormBtn.addEventListener('click', () => {
+            fieldsIds.forEach(id => {
+                const el = document.getElementById(id);
+                if(el){ el.value=''; el.dispatchEvent(new Event('input')); }
+            });
+            resultsContainer.innerHTML='';
+            resultsContainer.classList.add('hidden');
+            sessionStorage.removeItem('gift-results');
+        });
 
         function displayError(message) {
             errorContainer.innerHTML = '';
@@ -101,6 +149,7 @@
             resultsContainer.appendChild(listEl);
             resultsContainer.classList.remove('hidden');
             resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            sessionStorage.setItem('gift-results', resultsContainer.innerHTML);
         }
 
         async function callGeminiAPI(promptText, button, originalHTML) {
