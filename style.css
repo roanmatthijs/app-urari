@@ -89,6 +89,12 @@
         .btn-primary:hover { background-position: right center; transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3), 0 0 20px var(--color-accent-magenta-flare); }
         .btn-primary:active { transform: translateY(-1px) scale(0.98); box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25); }
         .btn-primary:disabled { background-image: none; background-color: #3a414a; color: #6e7681; cursor: not-allowed; transform: translateY(0); box-shadow: none; }
+
+        /* Variant with reversed background position used on homepage */
+        .btn-primary-reverse { background-image: linear-gradient(to right, var(--color-accent-celestial-blue) 0%, var(--color-accent-magenta-flare) 70%, var(--color-accent-golden-spark) 100%); background-size: 200% auto; background-position: right center; color: white; transition: background-position 0.5s ease, transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1); border-radius: var(--border-radius-input); padding: 0.9rem 1.75rem; font-weight: 700; font-size: 1rem; box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 0 10px var(--color-accent-celestial-blue-hover); border: none; position: relative; overflow: hidden; }
+        .btn-primary-reverse::before { content: ""; position: absolute; top: 50%; left: 50%; width: 300%; height: 300%; background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%); border-radius: 50%; transform: translate(-50%, -50%) scale(0); transition: transform 0.5s ease, opacity 0.5s ease; opacity: 0; pointer-events: none; }
+        .btn-primary-reverse:hover::before { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        .btn-primary-reverse:hover { background-position: left center; transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3), 0 0 20px var(--color-accent-magenta-flare); }
         
         .btn-gift { background-image: linear-gradient(to right, var(--color-gift-button) 0%, #67e8f9 100%); box-shadow: 0 8px 15px rgba(32, 201, 190, 0.25); }
         .btn-gift:hover { background-position: right center; box-shadow: 0 12px 25px rgba(32, 201, 190, 0.3); }
