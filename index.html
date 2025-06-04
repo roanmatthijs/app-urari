@@ -191,11 +191,20 @@
 
         @media (max-width: 640px) {
             .tabs-container {
-                grid-template-columns: repeat(4, 1fr);
+                display: flex;
+                overflow-x: auto;
+                gap: 0.25rem;
+                padding-bottom: 0.5rem;
+                scroll-snap-type: x mandatory;
+            }
+            .tabs-container::-webkit-scrollbar {
+                display: none;
             }
             .tab-button {
+                flex: 0 0 auto;
                 font-size: 0.8rem;
-                padding: 0.6rem 0.25rem;
+                padding: 0.6rem 0.5rem;
+                scroll-snap-align: start;
             }
             .generator-container {
                 padding: 1rem;
