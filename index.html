@@ -1082,13 +1082,6 @@
             giftIdeasResultsContainer.appendChild(listElement);
              giftIdeasResultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-
-        function displayError(message) {
-            errorMessageContainer.innerHTML = `<p class="font-semibold">Oops! A apărut o problemă:</p><p class="mt-1">${message}</p>`;
-            errorMessageContainer.classList.remove('hidden');
-            errorMessageContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
         // --- Initialize Tabs ---
         createTabs(); 
         if (occasions.length > 0) {
