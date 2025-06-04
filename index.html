@@ -191,11 +191,33 @@
 
         @media (max-width: 640px) {
             .tabs-container {
-                grid-template-columns: repeat(4, 1fr);
+                display: flex;
+                overflow-x: auto;
+                gap: 0.25rem;
+                padding-bottom: 0.5rem;
+                scroll-snap-type: x mandatory;
+                scroll-behavior: smooth;
+            }
+            .tabs-container::-webkit-scrollbar {
+                display: none;
             }
             .tab-button {
+                flex: 0 0 auto;
                 font-size: 0.8rem;
-                padding: 0.6rem 0.25rem;
+                padding: 0.6rem 0.5rem;
+                scroll-snap-align: start;
+            }
+            .generator-container {
+                padding: 1rem;
+            }
+            .wish-card {
+                padding: 1.25rem;
+                padding-right: 5rem;
+            }
+            .btn-icon-wrapper {
+                top: 0.75rem;
+                right: 0.75rem;
+                gap: 0.5rem;
             }
             .generator-container {
                 padding: 1rem;
@@ -953,6 +975,10 @@
             document.querySelectorAll('.tab-content').forEach(pane => {
                 pane.classList.toggle('active', pane.id === tabId);
             });
+            const activeButton = document.querySelector(`.tab-button[data-tab-id="${tabId}"]`);
+            if (activeButton && tabsContainer.scrollWidth > tabsContainer.clientWidth) {
+                activeButton.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
             giftIdeasResultsContainer.innerHTML = ''; // Clear global gift ideas if shown outside tab
         }
 
