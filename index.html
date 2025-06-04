@@ -711,9 +711,8 @@
                 buttonsWrapper.insertBefore(heartButton, copyButtonContainer); 
             }
             
-            wishElement.appendChild(buttonsWrapper); 
-            wishElement.appendChild(paragraph); 
-            wishElement.insertBefore(paragraph, buttonsWrapper);
+            wishElement.appendChild(paragraph);
+            wishElement.appendChild(buttonsWrapper);
 
             if (!isFavoriteCard && includeActions) {
                 const actionsContainer = document.createElement('div');
