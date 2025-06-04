@@ -8,7 +8,7 @@ const { JSDOM } = require('jsdom');
 let createWishCardDOM;
 
 beforeAll(() => {
-  const html = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf8');
+  const html = fs.readFileSync(path.resolve(__dirname, '../generator-urari.html'), 'utf8');
   const dom = new JSDOM(html, { runScripts: 'dangerously', url: 'http://localhost' });
   createWishCardDOM = dom.window.createWishCardDOM;
 });
