@@ -33,7 +33,14 @@
             <h1 class="title-font text-4xl sm:text-5xl md:text-6xl mb-3">Generatorul de Urări</h1>
             <p class="subtitle-font text-lg md:text-xl">Creează mesaje personalizate pentru orice ocazie.</p>
         </header>
-            <div class="mb-6 text-center"><a href="index.html" class="text-[#58a6ff] hover:text-[#79c0ff] underline">Acasă</a></div>
+        <div class="mb-6 flex justify-between">
+            <a href="index.html" class="icon-nav-btn" aria-label="Acasă">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9.75L12 3l9 6.75V21a.75.75 0 0 1-.75.75H3.75A.75.75 0 0 1 3 21V9.75z"/><path d="M9 22V12h6v10" stroke="#0d1117" stroke-width="0"/></svg>
+            </a>
+            <a href="index.html" class="icon-nav-btn" aria-label="Înapoi">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M15.75 19.5L8.25 12l7.5-7.5" stroke="#0d1117" stroke-width="0"/></svg>
+            </a>
+        </div>
 
         <div class="tabs-container" id="tabsContainer">
         </div>
@@ -108,7 +115,8 @@
 
         const API_MODEL = "gemini-2.0-flash";
         const FAVORITES_KEY = 'generatorUrariFavorites';
-        let favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
+        let favorites = JSON.parse(sessionStorage.getItem(FAVORITES_KEY)) || JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
+        sessionStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
 
         const occasions = [
             { 
@@ -355,12 +363,14 @@
                 heartButton.innerHTML = getFavoriteIconSVG(true);
             }
             localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+            sessionStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
             updateFavoritesButtonVisibility();
         }
         
         function removeFavorite(wishId) {
             favorites = favorites.filter(fav => fav.id !== wishId);
             localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+            sessionStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
             updateFavoritesButtonVisibility();
         }
 
@@ -613,12 +623,13 @@
                 let formHTML = '<div class="space-y-6 md:space-y-8">';
                 occasion.fields.forEach(field => {
                     formHTML += `<div><label for="${field.id}-${occasion.id}" class="block label-style">${field.label}</label>`;
+                    formHTML += `<div class="flex items-center gap-2">`;
                     if (field.type === 'textarea') {
-                        formHTML += `<textarea id="${field.id}-${occasion.id}" class="textarea-style" placeholder="${field.placeholder || ''}"></textarea>`;
+                        formHTML += `<textarea id="${field.id}-${occasion.id}" class="textarea-style flex-grow" placeholder="${field.placeholder || ''}"></textarea>`;
                     } else {
-                        formHTML += `<input type="${field.type}" id="${field.id}-${occasion.id}" class="input-style" placeholder="${field.placeholder || ''}">`;
+                        formHTML += `<input type="${field.type}" id="${field.id}-${occasion.id}" class="input-style flex-grow" placeholder="${field.placeholder || ''}">`;
                     }
-                    formHTML += `</div>`;
+                    formHTML += `<button type="button" class="clear-field-btn" aria-label="Șterge">&times;</button></div></div>`;
                 });
 
                 if (occasion.tones) {
@@ -645,7 +656,7 @@
                     });
                 }
                 
-                formHTML += `<div class="main-action-buttons grid grid-cols-1 gap-4 pt-6"> 
+                formHTML += `<div class="pt-2"><button type="button" class="btn-secondary w-full clear-all-fields">Șterge tot</button></div><div class="main-action-buttons grid grid-cols-1 gap-4 pt-6"> 
                                 <button class="btn-primary w-full generate-wish-for-tab-button" data-occasion-id="${occasion.id}">
                                     Generează ${occasion.isReplyGenerator ? 'Răspunsuri' : occasion.promptName}
                                 </button>
@@ -662,6 +673,7 @@
                 formHTML += `</div><div id="wishes-results-container-${occasion.id}" class="mt-12 md:mt-16"></div>`;
                 contentPane.innerHTML = formHTML;
                 tabContentContainer.appendChild(contentPane);
+                restoreTabState(occasion.id);
             });
             
             document.querySelectorAll('.generate-wish-for-tab-button').forEach(button => {
@@ -847,12 +859,13 @@
         function displayWishes(wishesArray, containerElement, title = "Sugestii de Urări:") {
             containerElement.innerHTML = `<h2 class="section-title text-center !text-xl !mb-6">${sanitizeHTML(title)}</h2>`;
             wishesArray.forEach((wish, index) => {
-                const uniqueWishId = `wish-text-${activeTabId}-${Date.now()}-${index}`; 
+                const uniqueWishId = `wish-text-${activeTabId}-${Date.now()}-${index}`;
                 const domWishId = `wish-dom-${activeTabId}-${index}`;
                 const wishElement = createWishCardDOM(wish, domWishId, uniqueWishId);
                 containerElement.appendChild(wishElement);
                 setTimeout(() => wishElement.classList.add('visible'), 10 + index * 120);
             });
+            sessionStorage.setItem(`gu-results-${activeTabId}`, containerElement.innerHTML);
         }
 
         function displayGiftIdeas(ideasArray, introText = "") {
@@ -877,11 +890,52 @@
             });
             giftIdeasResultsContainer.appendChild(listElement);
              giftIdeasResultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            sessionStorage.setItem(`gu-gifts-${activeTabId}`, giftIdeasResultsContainer.innerHTML);
+        }
+
+        function restoreTabState(tabId) {
+            const pane = document.getElementById(tabId);
+            if(!pane) return;
+            pane.querySelectorAll('input, textarea, select').forEach(el => {
+                const key = `gu-${tabId}-${el.id}`;
+                const stored = sessionStorage.getItem(key);
+                if(stored !== null) {
+                    if(el.type === 'checkbox') el.checked = stored === 'true';
+                    else el.value = stored;
+                }
+                const handler = () => {
+                    if(el.type === 'checkbox') sessionStorage.setItem(key, el.checked);
+                    else sessionStorage.setItem(key, el.value);
+                };
+                el.addEventListener('input', handler);
+                el.addEventListener('change', handler);
+            });
+            const res = sessionStorage.getItem(`gu-results-${tabId}`);
+            if(res) {
+                const cont = document.getElementById(`wishes-results-container-${tabId}`);
+                if(cont) { cont.innerHTML = res; }
+            }
+            const gifts = sessionStorage.getItem(`gu-gifts-${tabId}`);
+            if(gifts) giftIdeasResultsContainer.innerHTML = gifts;
+            pane.querySelectorAll('.clear-field-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const input = btn.parentElement.querySelector('input, textarea');
+                    if(input){ input.value=''; input.dispatchEvent(new Event('input')); }
+                });
+            });
+            const clearAll = pane.querySelector('.clear-all-fields');
+            if(clearAll) clearAll.addEventListener('click', () => {
+                pane.querySelectorAll('input, textarea').forEach(el => {
+                    el.value='';
+                    el.dispatchEvent(new Event('input'));
+                });
+            });
         }
         // --- Initialize Tabs ---
-        createTabs(); 
+        createTabs();
         if (occasions.length > 0) {
-            switchTab(occasions[0].id); 
+            switchTab(occasions[0].id);
+            restoreTabState(occasions[0].id);
         }
         updateFavoritesButtonVisibility();
 

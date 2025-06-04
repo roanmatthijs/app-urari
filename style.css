@@ -308,3 +308,34 @@
         @media (max-width: 1024px) {
             .ad-sidebar { display: none; }
         }
+.clear-field-btn {
+    border: 1px solid var(--color-surface-border);
+    background-color: transparent;
+    color: var(--color-text-secondary);
+    border-radius: 9999px;
+    width: 1.75rem;
+    height: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.clear-field-btn:hover {
+    background-color: rgba(88,166,255,0.1);
+    color: var(--color-text-primary);
+}
+.icon-nav-btn {
+    border: 1px solid var(--color-surface-border);
+    border-radius: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent-celestial-blue);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.icon-nav-btn:hover {
+    background-color: rgba(88,166,255,0.1);
+    color: var(--color-accent-celestial-blue-hover);
+}
