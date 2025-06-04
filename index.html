@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generator de Urări Premium - Ediție Festivă Completă</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -283,6 +284,9 @@
         <div id="global-actions-container" class="pt-8 mt-8 border-t border-[var(--color-surface-border)]">
              <div id="favorites-button-container" class="text-center mb-6">
             </div>
+            <div id="captcha-container" class="my-6 flex justify-center">
+                <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+            </div>
         </div>
         
 
@@ -327,6 +331,9 @@
         const favoritesModalOverlay = document.getElementById('favorites-modal-overlay');
         const closeFavoritesModalButton = document.getElementById('close-favorites-modal');
         const favoritesListContainer = document.getElementById('favorites-list-container');
+        function isCaptchaVerified() {
+            return typeof grecaptcha === 'undefined' || grecaptcha.getResponse().length > 0;
+        }
         
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
@@ -650,6 +657,9 @@
                     const giftBtnGlobal = document.getElementById('generate-gifts-button-global');
                     if(giftBtnGlobal) giftBtnGlobal.disabled = false;
                 }
+                if (typeof grecaptcha !== 'undefined') {
+                    grecaptcha.reset();
+                }
             }
         }
         
@@ -891,7 +901,11 @@
             const occasionId = event.target.dataset.occasionId;
             const currentOccasion = occasions.find(o => o.id === occasionId);
             const resultsContainer = document.getElementById(`wishes-results-container-${occasionId}`);
-            resultsContainer.innerHTML = ''; 
+            resultsContainer.innerHTML = '';
+            if (!isCaptchaVerified()) {
+                displayError('Te rugăm să confirmi că nu ești robot bifând caseta de verificare.');
+                return;
+            }
 
             let promptDetails = {};
             let mainName = ""; // Used for constructing nameString
@@ -985,7 +999,11 @@
         async function handleGenerateGiftsForTab(event) {
             const occasionId = event.target.dataset.occasionId;
             const currentOccasion = occasions.find(o => o.id === occasionId);
-            giftIdeasResultsContainer.innerHTML = ''; 
+            giftIdeasResultsContainer.innerHTML = '';
+            if (!isCaptchaVerified()) {
+                displayError('Te rugăm să confirmi că nu ești robot bifând caseta de verificare.');
+                return;
+            }
 
             let promptDetails = {};
              currentOccasion.fields.forEach(field => {
