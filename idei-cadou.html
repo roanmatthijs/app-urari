@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idei de Cadou Personalizate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="data:image/png;base64,$BASE64_STR">
+</head>
+<body class="flex flex-col items-center min-h-screen selection:bg-blue-100 selection:text-blue-700">
+    <div class="dust-motes-container pointer-events-none absolute inset-0 overflow-hidden -z-10">
+        <span class="dust-mote mote1"></span>
+        <span class="dust-mote mote2"></span>
+        <span class="dust-mote mote3"></span>
+        <span class="dust-mote mote4"></span>
+        <span class="dust-mote mote5"></span>
+        <span class="dust-mote mote6"></span>
+    </div>
+    <main class="flex-grow w-full px-4 flex items-start justify-center">
+        <div class="generator-container w-full max-w-2xl">
+            <h1 class="text-3xl sm:text-4xl font-bold text-[#58a6ff] mb-8 text-center">Generare idei de cadouri</h1>
+            <div class="mb-6 text-center"><a href="index.html" class="text-[#58a6ff] hover:text-[#79c0ff] underline">Acasă</a></div>
+            <form id="gift-form" class="space-y-4">
+                <div>
+                    <label class="label-style" for="dest">Nume destinatar (opțional)</label>
+                    <input id="dest" type="text" class="input-style" placeholder="Ex: Ana" />
+                </div>
+                <div>
+                    <label class="label-style" for="age">Vârsta</label>
+                    <input id="age" type="number" class="input-style" placeholder="30" />
+                </div>
+                <div>
+                    <label class="label-style" for="rel">Relația cu tine</label>
+                    <input id="rel" type="text" class="input-style" placeholder="Ex: colegă" />
+                </div>
+                <div>
+                    <label class="label-style" for="occ">Ocazia</label>
+                    <input id="occ" type="text" class="input-style" placeholder="Zi de naștere" />
+                </div>
+                <div>
+                    <label class="label-style" for="hobby">Interese și hobby-uri (opțional)</label>
+                    <input id="hobby" type="text" class="input-style" placeholder="Fotografie, lectură" />
+                </div>
+                <button type="button" id="gen-btn" class="btn-primary w-full">Generează idei de cadou</button>
+            </form>
+            <div id="gift-results" class="mt-8 hidden">
+                <p>🎁 Cadou 1: O carte despre fotografie</p>
+            </div>
+        </div>
+    </main>
+    <footer class="text-center p-8 mt-16 text-sm text-gray-500">
+        <p>&copy; <span id="currentYear"></span> Generator de Urări Autentice. Creat cu inspirație.</p>
+        <p class="mt-2 space-x-4 text-sm">
+            <a href="/politica-cookies.html" class="text-[#58a6ff] hover:text-[#79c0ff] underline">Politica de Cookies</a>
+            <a href="/confidentialitate.html" class="text-[#58a6ff] hover:text-[#79c0ff] underline">Politica de Confidențialitate</a>
+        </p>
+    </footer>
+    <div id="cookie-banner" class="hidden fixed bottom-0 inset-x-0 bg-[#161b22] text-white p-4 shadow flex flex-col md:flex-row items-center justify-between space-y-2 md:space-y-0">
+        <span>Folosim cookies pentru a îmbunătăți experiența ta și pentru viitoare reclame. Continuarea navigării implică acceptul tău.</span>
+        <button id="accept-cookies" class="bg-[#58a6ff] hover:bg-[#79c0ff] text-[#0d1117] font-semibold px-4 py-2 rounded">Accept</button>
+    </div>
+    <script src="cookies.js"></script>
+</body>
+</html>
