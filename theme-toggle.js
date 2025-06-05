@@ -38,10 +38,19 @@
 
   function applyInitialTheme() {
     const stored = localStorage.getItem('theme');
-    if (stored === 'light') {
-      html.classList.add('theme-light');
+    let isLight;
+    if (stored) {
+      isLight = stored === 'light';
+    } else {
+      // consider existing class="dark" or "theme-light" on the <html> element
+      isLight = html.classList.contains('theme-light') || !html.classList.contains('dark');
     }
-    updateIcons(html.classList.contains('theme-light'));
+    if (isLight) {
+      html.classList.add('theme-light');
+    } else {
+      html.classList.remove('theme-light');
+    }
+    updateIcons(isLight);
   }
 
   function toggleTheme() {
