@@ -4,12 +4,12 @@
   const btnId = 'theme-toggle';
   const icons = {
     light: {
-      theme: 'icons/sun-light.svg',
+      theme: 'icons/dark-button.svg',
       home: 'icons/home-light.svg',
       back: 'icons/back-light.svg'
     },
     dark: {
-      theme: 'icons/moon-dark.svg',
+      theme: 'icons/light-button.svg',
       home: 'icons/home-dark.svg',
       back: 'icons/back-dark.svg'
     }
@@ -27,7 +27,11 @@
 
   function updateIcons(isLight) {
     const variant = isLight ? 'light' : 'dark';
-    swapIcon(document.querySelector('#theme-icon'), icons[variant].theme, isLight ? 'Icon soare' : 'Icon lună');
+    swapIcon(
+      document.querySelector('#theme-icon'),
+      icons[variant].theme,
+      isLight ? 'Icon lună' : 'Icon soare'
+    );
     swapIcon(document.querySelector('#home-icon'), icons[variant].home, 'Acasă');
     swapIcon(document.querySelector('#back-icon'), icons[variant].back, 'Înapoi');
   }
