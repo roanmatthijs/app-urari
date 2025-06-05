@@ -373,6 +373,11 @@
     color: var(--color-accent-celestial-blue);
     transition: background-color 0.2s ease, color 0.2s ease;
 }
+.icon-nav-btn img {
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: opacity 0.2s ease;
+}
 .icon-nav-btn:hover {
     background-color: rgba(88,166,255,0.1);
     color: var(--color-accent-celestial-blue-hover);
