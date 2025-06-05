@@ -82,7 +82,8 @@
         }
         @keyframes gradientFlow { 0% { background-position: 0% 50%, 0% 50%; } 50% { background-position: 0% 50%, 100% 50%; } 100% { background-position: 0% 50%, 0% 50%; } }
 
-        .dust-motes-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 0; }
+        .dust-motes-container { display: none; }
+        #star-canvas { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
         .dust-mote { position: absolute; background-color: rgba(139, 148, 158, 0.15); border-radius: 50%; opacity: 0; animation: driftAndFade 60s infinite linear; will-change: transform, opacity; }
         .mote1 { width: 1px; height: 1px; top: 20%; left: 10%; animation-duration: 80s; animation-delay: -2s; --mote-dx: 12; --mote-dy: -22; }
         .mote2 { width: 2px; height: 2px; top: 40%; left: 90%; animation-duration: 70s; animation-delay: -10s; --mote-dx: -18; --mote-dy: 12; }
