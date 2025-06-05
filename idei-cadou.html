@@ -21,13 +21,14 @@
     <main class="flex-grow w-full px-4 flex items-start justify-center">
         <div class="generator-container w-full max-w-2xl">
             <h1 class="text-3xl sm:text-4xl font-bold text-[#58a6ff] mb-8 text-center">Generare idei de cadouri</h1>
-            <div class="mb-6 flex justify-between">
+            <div class="mb-6 flex justify-between items-center gap-4">
                 <a href="index.html" class="icon-nav-btn" aria-label="Acasă">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9.75L12 3l9 6.75V21a.75.75 0 0 1-.75.75H3.75A.75.75 0 0 1 3 21V9.75z"/><path d="M9 22V12h6v10" stroke="#0d1117" stroke-width="0"/></svg>
                 </a>
                 <a href="index.html" class="icon-nav-btn" aria-label="Înapoi">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M15.75 19.5L8.25 12l7.5-7.5" stroke="#0d1117" stroke-width="0"/></svg>
                 </a>
+                <button id="theme-toggle" class="icon-nav-btn" aria-label="Comută tema"></button>
             </div>
             <form id="gift-form" class="space-y-4">
                 <div>
@@ -229,5 +230,6 @@
         });
     </script>
     <script src="cookies.js"></script>
+    <script src="theme-toggle.js"></script>
 </body>
 </html>

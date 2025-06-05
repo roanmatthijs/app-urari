@@ -27,7 +27,33 @@
              --color-gift-button: #2dd4bf; /* Tailwind teal-400 */
             --color-gift-button-hover: #14b8a6; /* Tailwind teal-500 */
             --color-reply-button: #818cf8; /* Tailwind indigo-400 */
-            --color-reply-button-hover: #6366f1; /* Tailwind indigo-500 */
+        --color-reply-button-hover: #6366f1; /* Tailwind indigo-500 */
+        }
+
+        .theme-light {
+            --color-background-deep-space: #f5f7fa;
+            --color-background-nebula-start: #eef2f7;
+            --color-background-nebula-end: #ffffff;
+            --color-surface-glass: rgba(255, 255, 255, 0.8);
+            --color-surface-border: rgba(0, 0, 0, 0.1);
+            --color-surface-glow: rgba(88, 166, 255, 0.3);
+            --color-text-primary: #1f2937;
+            --color-text-secondary: #4b5563;
+            --color-text-placeholder: #6b7280;
+            --color-accent-celestial-blue: #2563eb;
+            --color-accent-celestial-blue-hover: #1d4ed8;
+            --color-accent-magenta-flare: #be185d;
+            --color-accent-golden-spark: #eab308;
+            --color-favorite-active: #dc2626;
+            --color-favorite-inactive: #9ca3af;
+            --color-success: #16a34a;
+            --color-error-bg: rgba(248, 81, 73, 0.1);
+            --color-error-text: #b91c1c;
+            --color-error-border: rgba(248, 81, 73, 0.5);
+            --color-gift-button: #2dd4bf;
+            --color-gift-button-hover: #14b8a6;
+            --color-reply-button: #818cf8;
+            --color-reply-button-hover: #6366f1;
         }
 
         @keyframes backgroundStars { 0% { background-position: 0 0; } 100% { background-position: -10000px 5000px; } }
@@ -344,4 +370,13 @@
 .icon-nav-btn:hover {
     background-color: rgba(88,166,255,0.1);
     color: var(--color-accent-celestial-blue-hover);
+}
+
+@keyframes themeRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.animate-switch {
+    animation: themeRotate 0.6s ease;
 }
