@@ -10,6 +10,8 @@ let createWishCardDOM;
 beforeAll(() => {
   const html = fs.readFileSync(path.resolve(__dirname, '../generator-urari.html'), 'utf8');
   const dom = new JSDOM(html, { runScripts: 'dangerously', url: 'http://localhost' });
+  const script = fs.readFileSync(path.resolve(__dirname, '../generator.js'), 'utf8');
+  dom.window.eval(script);
   createWishCardDOM = dom.window.createWishCardDOM;
 });
 
