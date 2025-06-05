@@ -38,7 +38,8 @@
 
   function draw() {
     ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = '#ffffff';
+    ctx.fillStyle = getComputedStyle(document.documentElement)
+      .getPropertyValue('--star-color').trim() || '#ffffff';
     for (const s of stars) {
       s.y += s.speed;
       if (s.y - s.r > height) {

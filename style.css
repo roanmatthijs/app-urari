@@ -40,6 +40,7 @@
             --color-surface-glass: rgba(255, 255, 255, 0.8);
             --color-surface-border: rgba(0, 0, 0, 0.1);
             --color-surface-glow: rgba(88, 166, 255, 0.3);
+            --star-color: #ffffff;
             --color-text-primary: #1f2937;
             --color-text-secondary: #4b5563;
             --color-text-placeholder: #6b7280;
@@ -60,18 +61,17 @@
             --color-input-bg: rgba(255, 255, 255, 0.9);
             --color-input-bg-focus: rgba(255, 255, 255, 1);
             --color-list-item-bg: rgba(255, 255, 255, 0.7);
+            --star-color: #a3a3a3;
         }
 
         @keyframes backgroundStars { 0% { background-position: 0 0; } 100% { background-position: -10000px 5000px; } }
         
         body {
             font-family: var(--font-primary);
-            background-color: var(--color-background-deep-space);
-            background-image: 
-                url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cfilter id='stars'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 -0.3 1'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='100%25' height='100%25' filter='url(%23stars)' opacity='0.3'/%3E%3C/svg%3E"),
-                linear-gradient(170deg, var(--color-background-nebula-start) 0%, var(--color-background-nebula-end) 100%);
-            background-size: auto, 200% 200%;
-            animation: gradientFlow 45s ease infinite, backgroundStars 300s linear infinite;
+            background-color: #0b1d3c;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cfilter id='stars'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 -0.3 1'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='100%25' height='100%25' filter='url(%23stars)' opacity='0.3'/%3E%3C/svg%3E");
+            background-size: auto;
+            animation: backgroundStars 300s linear infinite;
             color: var(--color-text-primary);
             line-height: 1.7; 
             padding-top: 2rem; 
@@ -80,7 +80,6 @@
             position: relative; 
             overflow-x: hidden; 
         }
-        @keyframes gradientFlow { 0% { background-position: 0% 50%, 0% 50%; } 50% { background-position: 0% 50%, 100% 50%; } 100% { background-position: 0% 50%, 0% 50%; } }
 
         .dust-motes-container { display: none; }
         #star-canvas { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
