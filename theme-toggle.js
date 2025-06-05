@@ -4,12 +4,12 @@
   const btnId = 'theme-toggle';
   const icons = {
     light: {
-      theme: 'icons/sun-light.svg',
+      theme: 'icons/dark-button.svg',
       home: 'icons/home-light.svg',
       back: 'icons/back-light.svg'
     },
     dark: {
-      theme: 'icons/moon-dark.svg',
+      theme: 'icons/light-button.svg',
       home: 'icons/home-dark.svg',
       back: 'icons/back-dark.svg'
     }
