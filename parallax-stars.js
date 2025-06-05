@@ -19,14 +19,14 @@
         x: Math.random() * width,
         y: Math.random() * height,
         z: depth,
-        r: Math.random() * 1.2 + 0.2
+        r: Math.random() * 1.2 + 0.2,
+        speed: 0.2 + depth * 0.4
       });
     }
   }
 
   let pointerX = 0;
   let pointerY = 0;
-  let scrollFactor = 0;
 
   function resize() {
     width = window.innerWidth;
@@ -40,15 +40,16 @@
     ctx.clearRect(0, 0, width, height);
     ctx.fillStyle = '#ffffff';
     for (const s of stars) {
-      const offsetX = pointerX * s.z * 20;
-      const offsetY = pointerY * s.z * 20 + scrollFactor * s.z * 50;
-      let x = (s.x + offsetX) % width;
-      if (x < 0) x += width;
-      let y = (s.y + offsetY) % height;
-      if (y < 0) y += height;
+      s.y += s.speed;
+      if (s.y - s.r > height) {
+        s.y = -s.r;
+        s.x = Math.random() * width;
+      }
+      const x = (s.x + pointerX * s.z * 20) % width;
+      const y = s.y + pointerY * s.z * 10;
       ctx.globalAlpha = 1 - s.z * 0.3;
       ctx.beginPath();
-      ctx.arc(x, y, s.r * (1 + scrollFactor * 0.3), 0, Math.PI * 2);
+      ctx.arc(x, y, s.r, 0, Math.PI * 2);
       ctx.fill();
     }
     requestAnimationFrame(draw);
@@ -58,9 +59,6 @@
   window.addEventListener('pointermove', (e) => {
     pointerX = (e.clientX / width) - 0.5;
     pointerY = (e.clientY / height) - 0.5;
-  });
-  window.addEventListener('scroll', () => {
-    scrollFactor = window.scrollY / window.innerHeight;
   });
 
   initStars();
