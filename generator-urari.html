@@ -848,6 +848,18 @@
             return temp.innerHTML;
         }
 
+        function safeParseHTML(htmlString) {
+            const template = document.createElement('template');
+            template.innerHTML = htmlString;
+            template.content.querySelectorAll('script').forEach(el => el.remove());
+            template.content.querySelectorAll('*').forEach(el => {
+                [...el.attributes].forEach(attr => {
+                    if(attr.name.toLowerCase().startsWith('on')) el.removeAttribute(attr.name);
+                });
+            });
+            return template.content.cloneNode(true);
+        }
+
         function displayWishes(wishesArray, containerElement, title = "Sugestii de Urări:") {
             containerElement.innerHTML = `<h2 class="section-title text-center !text-xl !mb-6">${sanitizeHTML(title)}</h2>`;
             wishesArray.forEach((wish, index) => {
@@ -905,10 +917,16 @@
             const res = sessionStorage.getItem(`gu-results-${tabId}`);
             if(res) {
                 const cont = document.getElementById(`wishes-results-container-${tabId}`);
-                if(cont) { cont.innerHTML = res; }
+                if(cont) {
+                    cont.innerHTML = '';
+                    cont.appendChild(safeParseHTML(res));
+                }
             }
             const gifts = sessionStorage.getItem(`gu-gifts-${tabId}`);
-            if(gifts) giftIdeasResultsContainer.innerHTML = gifts;
+            if(gifts) {
+                giftIdeasResultsContainer.innerHTML = '';
+                giftIdeasResultsContainer.appendChild(safeParseHTML(gifts));
+            }
             pane.querySelectorAll('.clear-field-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const input = btn.parentElement.querySelector('input, textarea');
