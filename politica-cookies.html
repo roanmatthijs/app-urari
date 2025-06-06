@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Politica de Cookies</title>
+    <meta name="description" content="Află politica de cookies a site-ului Urari: ce tipuri de cookies folosim, cum sunt folosite și cum le poți controla.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -52,27 +53,15 @@
         </footer>
     </div>
 
-    <div id="cookie-banner" class="hidden fixed bottom-0 inset-x-0 bg-[#161b22] text-white p-4 shadow flex flex-col md:flex-row items-center justify-between space-y-2 md:space-y-0">
-        <span>Folosim cookies pentru a îmbunătăți experiența ta și pentru viitoare reclame. Continuarea navigării implică acceptul tău.</span>
-        <button id="accept-cookies" class="bg-[#58a6ff] hover:bg-[#79c0ff] text-[#0d1117] font-semibold px-4 py-2 rounded">Accept</button>
+    <div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Banner cookies" class="hidden fixed bottom-0 inset-x-0 bg-[#161b22] text-white p-4 shadow flex flex-col md:flex-row items-center justify-between space-y-2 md:space-y-0 transition-opacity duration-500 opacity-0">
+        <span>Folosim cookies pentru a îmbunătăți experiența ta și pentru viitoare reclame. Continuarea navigării implică acceptul tău. <a href="/politica-cookies.html" class="underline text-[#58a6ff] ml-1">Află mai multe</a></span>
+        <div class="flex space-x-2 mt-2 md:mt-0">
+            <button id="accept-cookies" class="bg-[#58a6ff] hover:bg-[#79c0ff] text-[#0d1117] font-semibold px-4 py-2 rounded" aria-label="Acceptă cookies">Accept</button>
+            <button id="decline-cookies" class="bg-gray-500 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded" aria-label="Refuză cookies">Refuz</button>
+        </div>
     </div>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const banner = document.getElementById('cookie-banner');
-        const btn = document.getElementById('accept-cookies');
-        if (!banner || !btn) return;
-        if (localStorage.getItem('cookiesAccepted')) {
-            banner.style.display = 'none';
-        } else {
-            banner.style.display = 'flex';
-            btn.addEventListener('click', () => {
-                localStorage.setItem('cookiesAccepted', 'true');
-                banner.style.display = 'none';
-            });
-        }
-    });
-    </script>
+    <script src="cookies.js"></script>
     <script src="theme-toggle.js"></script>
 </body>
 </html>
