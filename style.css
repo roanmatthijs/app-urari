@@ -1,4 +1,4 @@
-        :root {
+:root {
             --font-primary: 'Inter', sans-serif;
             --font-display: 'Playfair Display', serif;
             --color-background-deep-space: #0d1117; 
@@ -98,12 +98,21 @@
             -webkit-backdrop-filter: blur(20px) saturate(150%);
             border-radius: var(--border-radius-main); 
             box-shadow: var(--shadow-card-depth), 0 0 0 1px var(--color-surface-border); 
-            padding: 2rem;
+            padding: 1rem; /* px-4 */
             position: relative;
             z-index: 1; 
             overflow: hidden; 
         }
-        @media (min-width: 768px) { .generator-container { padding: 3rem; } }
+        @media (min-width: 640px) {
+            .generator-container {
+                padding: 1.5rem; /* sm:px-6 */
+            }
+        }
+        @media (min-width: 768px) {
+            .generator-container {
+                padding: 2rem; /* md:px-8 */
+            }
+        }
         .generator-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: inherit; padding: 1px; background: linear-gradient(120deg, transparent, var(--color-accent-celestial-blue), transparent, var(--color-accent-magenta-flare), transparent); background-size: 300% 300%; animation: borderGlow 10s linear infinite; -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: destination-out; mask-composite: exclude; z-index: -1; }
         @keyframes borderGlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 

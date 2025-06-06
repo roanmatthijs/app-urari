@@ -61,5 +61,12 @@
     if (btn) {
       btn.addEventListener('click', toggleTheme);
     }
+    // Home button logic
+    const homeBtn = document.getElementById('home-btn');
+    if (homeBtn) {
+      homeBtn.addEventListener('click', function() {
+        window.location.href = '/index.html';
+      });
+    }
   });
 })();
