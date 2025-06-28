@@ -20,7 +20,7 @@
         <span class="dust-mote mote6"></span>
     </div>
     <main class="flex-grow w-full px-4 flex items-start justify-center">
-        <div class="generator-container w-full max-w-2xl px-4 sm:px-6 md:px-8">
+        <div class="generator-container w-full max-w-2xl">
             <h1 class="title-font text-4xl sm:text-5xl md:text-6xl mb-8 text-center">Generare idei de cadouri</h1>
             <div class="mb-6 flex justify-between items-center gap-4">
                 <a href="index.html" class="icon-nav-btn" aria-label="Acasă">
@@ -189,7 +189,6 @@
                 }
                 throw new Error('Am primit un răspuns neașteptat de la serviciul de generare.');
             } catch (err) {
-               
                 console.error('Eroare la apelul API Gemini:', err);
                 displayError(err.message);
                 return null;
